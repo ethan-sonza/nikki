@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
-  import { Section, YouTubePreview } from '../components';
+  import { Section, YouTubePreview, FullVid } from '../components';
   import { lazyLoad, typewriter } from '../helpers';
 
   let visible, show_body, show_button = false;
@@ -44,8 +44,10 @@
       {/if}
     </div>
   {/if}
+</Section>
 
-  
+<Section>
+  <FullVid></FullVid>
 </Section>
 
 <div class="videos">
@@ -54,6 +56,9 @@
   {/each}
 </div>
 
+<Section>
+  <div>Contact Me</div>
+</Section>
 
 <style>
   /* First Section - About */
