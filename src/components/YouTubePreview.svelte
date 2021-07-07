@@ -1,37 +1,36 @@
 <script>
-    import YouTube from 'svelte-youtube';
-    import Modal from './Modal.svelte';
-    import { lazyLoad } from '../helpers';
+  import { modal } from '../stores';
 
-    export let videoId;
-    let modal;
+  import { bind } from 'svelte-simple-modal'
+  import YouTube from 'svelte-youtube';
 
-    const options = {
-        height: '390',
-        width: '640',
-        playerVars: {
-            autoplay: 1
-        }
-    };
+  import { lazyLoad } from '../helpers';
+
+  export let videoId;
+
+  const options = {
+    width: '1280',
+    height: '756',
+    playerVars: {
+        autoplay: 1
+    }
+  };
+
+  const show = () => {
+    modal.set(bind(YouTube, { videoId: videoId, options: options }));
+  };
 </script>
 
 <div class="preview">
-
-    <img 
-        use:lazyLoad={'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'}
-        alt='youtube-preview'
-        on:click="{() => modal.show()}"
-    />
-
-    <Modal
-        bind:this={modal}
-    >
-        <YouTube videoId={videoId} options={options}/>
-    </Modal>
-
-
-    <YouTube videoId="Rh5tEDUxric"/>
+  <img
+    use:lazyLoad={'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'}
+    alt='youtube-preview'
+    on:click="{() => show()}"
+  />
 </div>
 
 <style>
+  .preview {
+    max-width: 33vw;
+  }
 </style>

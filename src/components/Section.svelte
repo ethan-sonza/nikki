@@ -1,15 +1,16 @@
 <script>
-
+  export let colour;
 </script>
 
-<div class="section">
-    <slot></slot>
+<div class="section" style="--bg-colour: {colour}">
+  <slot></slot>
 </div>
 
 <style>
-    .section {
-        width: 100vw;
-        height: 90vh;
-        background-color: #212121;
-    }
+  .section {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background-color: var(--bg-colour);
+  }
 </style>

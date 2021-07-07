@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
+    "svelte-simple-modal": "^1.0.0",
     "svelte-youtube": "0.0.2"
   }
 }

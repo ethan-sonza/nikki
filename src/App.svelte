@@ -1,12 +1,10 @@
 <script>
-	// Stores
-	import { currentPage } from "./stores.js";
+	import { currentPage, modal } from "./stores.js";
 
-	// Pages
+	import Modal from 'svelte-simple-modal';
+
 	import { About, Home, Videos} from './pages';
-
-	// Components
-	import Navbar from "./components/Navbar.svelte";
+	import { Navbar } from './components';
 </script>
 
 <main>
@@ -19,6 +17,21 @@
 	{:else if $currentPage === 'Videos'}
 		<Videos />
 	{/if}
+
+
+	<!-- YouTube Modal -->
+	<Modal
+		show={$modal}
+		styleWindow= {{
+			width: 'auto',
+			textAlign: 'center',
+    	backgroundColor: 'black'
+		}}
+		styleContent={{
+			padding: 0
+		}}
+	>
+  </Modal>
 
 </main>
 
