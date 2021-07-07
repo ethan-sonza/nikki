@@ -19,6 +19,7 @@
     "svelte-parallax": "^0.2.7"
   },
   "dependencies": {
+    "gh-pages": "^3.2.3",
     "sirv-cli": "^1.0.0",
     "svelte-simple-modal": "^1.0.0",
     "svelte-youtube": "0.0.2"
