@@ -25,7 +25,7 @@
 
 <Section colour='#212121'>
   {#if visible}
-      <img id='landing-person' transition:fade="{{ duration: 2000 }}" use:lazyLoad={'/images/landing1.jpg'} alt='landing-person' />
+      <img id='landing-person' in:fade="{{ duration: 2000 }}" use:lazyLoad={'/images/landing1.jpg'} alt='landing-person' />
   {/if}
 </Section>
 
@@ -44,6 +44,6 @@
   .videos {
     max-width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 </style>

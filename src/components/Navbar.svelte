@@ -26,12 +26,13 @@
 
 <style>
     nav {
-        position: absolute;
+        position: fixed;
         width: inherit;
         display: flex;
         justify-content: space-between;
         align-items: center;
         color: #efefef;
+        z-index: 999;
     }
     nav div {
         padding: 10px;
