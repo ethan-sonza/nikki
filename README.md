@@ -103,3 +103,10 @@ Then, from within your project folder:
 npm run build
 surge public my-project.surge.sh
 ```
+
+
+### Notes ###
+
+Deployment is on Github Pages
+GitHub Pages looks at `docs/`
+Have to rename asset paths in `docs` to point to `/nikki`
