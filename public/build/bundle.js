@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
 var app = (function () {
     'use strict';
 
@@ -1081,7 +1081,7 @@ var app = (function () {
     const file$b = "node_modules/svelte-simple-modal/src/Modal.svelte";
 
     // (334:0) {#if Component}
-    function create_if_block$2(ctx) {
+    function create_if_block$3(ctx) {
     	let div3;
     	let div2;
     	let div1;
@@ -1093,7 +1093,7 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	let if_block = /*state*/ ctx[0].closeButton && create_if_block_1$2(ctx);
+    	let if_block = /*state*/ ctx[0].closeButton && create_if_block_1$1(ctx);
     	var switch_value = /*Component*/ ctx[1];
 
     	function switch_props(ctx) {
@@ -1205,7 +1205,7 @@ var app = (function () {
     						transition_in(if_block, 1);
     					}
     				} else {
-    					if_block = create_if_block_1$2(ctx);
+    					if_block = create_if_block_1$1(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
     					if_block.m(div1, t);
@@ -1300,7 +1300,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(334:0) {#if Component}",
     		ctx
@@ -1310,7 +1310,7 @@ var app = (function () {
     }
 
     // (356:8) {#if state.closeButton}
-    function create_if_block_1$2(ctx) {
+    function create_if_block_1$1(ctx) {
     	let show_if;
     	let current_block_type_index;
     	let if_block;
@@ -1382,7 +1382,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$2.name,
+    		id: create_if_block_1$1.name,
     		type: "if",
     		source: "(356:8) {#if state.closeButton}",
     		ctx
@@ -1522,7 +1522,7 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	let if_block = /*Component*/ ctx[1] && create_if_block$2(ctx);
+    	let if_block = /*Component*/ ctx[1] && create_if_block$3(ctx);
     	const default_slot_template = /*#slots*/ ctx[38].default;
     	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[37], null);
 
@@ -1559,7 +1559,7 @@ var app = (function () {
     						transition_in(if_block, 1);
     					}
     				} else {
-    					if_block = create_if_block$2(ctx);
+    					if_block = create_if_block$3(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
     					if_block.m(t.parentNode, t);
@@ -3330,16 +3330,17 @@ var app = (function () {
     function create_fragment$7(ctx) {
     	let div;
     	let current;
-    	const default_slot_template = /*#slots*/ ctx[2].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[1], null);
+    	const default_slot_template = /*#slots*/ ctx[3].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			if (default_slot) default_slot.c();
-    			attr_dev(div, "class", "section svelte-pk10rj");
+    			attr_dev(div, "class", "section svelte-1rjlnam");
     			set_style(div, "--bg-colour", /*colour*/ ctx[0]);
-    			add_location(div, file$7, 4, 0, 41);
+    			set_style(div, "height", /*height*/ ctx[1] + "vh");
+    			add_location(div, file$7, 5, 0, 67);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3355,13 +3356,17 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (default_slot) {
-    				if (default_slot.p && (!current || dirty & /*$$scope*/ 2)) {
-    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[1], !current ? -1 : dirty, null, null);
+    				if (default_slot.p && (!current || dirty & /*$$scope*/ 4)) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[2], !current ? -1 : dirty, null, null);
     				}
     			}
 
     			if (!current || dirty & /*colour*/ 1) {
     				set_style(div, "--bg-colour", /*colour*/ ctx[0]);
+    			}
+
+    			if (!current || dirty & /*height*/ 2) {
+    				set_style(div, "height", /*height*/ ctx[1] + "vh");
     			}
     		},
     		i: function intro(local) {
@@ -3394,7 +3399,8 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Section", slots, ['default']);
     	let { colour } = $$props;
-    	const writable_props = ["colour"];
+    	let { height = 90 } = $$props;
+    	const writable_props = ["colour", "height"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Section> was created with unknown prop '${key}'`);
@@ -3402,26 +3408,28 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ("colour" in $$props) $$invalidate(0, colour = $$props.colour);
-    		if ("$$scope" in $$props) $$invalidate(1, $$scope = $$props.$$scope);
+    		if ("height" in $$props) $$invalidate(1, height = $$props.height);
+    		if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
     	};
 
-    	$$self.$capture_state = () => ({ colour });
+    	$$self.$capture_state = () => ({ colour, height });
 
     	$$self.$inject_state = $$props => {
     		if ("colour" in $$props) $$invalidate(0, colour = $$props.colour);
+    		if ("height" in $$props) $$invalidate(1, height = $$props.height);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [colour, $$scope, slots];
+    	return [colour, height, $$scope, slots];
     }
 
     class Section extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { colour: 0 });
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { colour: 0, height: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -3443,6 +3451,14 @@ var app = (function () {
     	}
 
     	set colour(value) {
+    		throw new Error("<Section>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get height() {
+    		throw new Error("<Section>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set height(value) {
     		throw new Error("<Section>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -3474,9 +3490,9 @@ var app = (function () {
     			div = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(div, "class", "link svelte-1mq63bq");
+    			attr_dev(div, "class", "link svelte-5ir9nf");
     			toggle_class(div, "active", /*$currentPage*/ ctx[0] == /*link*/ ctx[4]);
-    			add_location(div, file$6, 16, 6, 276);
+    			add_location(div, file$6, 16, 6, 275);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3530,7 +3546,7 @@ var app = (function () {
     		c: function create() {
     			nav = element("nav");
     			div0 = element("div");
-    			div0.textContent = "NIKKI";
+    			div0.textContent = "NC";
     			t1 = space();
     			div1 = element("div");
 
@@ -3538,11 +3554,11 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "brand svelte-1mq63bq");
+    			attr_dev(div0, "class", "brand m svelte-5ir9nf");
     			add_location(div0, file$6, 10, 2, 182);
-    			attr_dev(div1, "class", "links svelte-1mq63bq");
-    			add_location(div1, file$6, 14, 2, 224);
-    			attr_dev(nav, "class", "svelte-1mq63bq");
+    			attr_dev(div1, "class", "links svelte-5ir9nf");
+    			add_location(div1, file$6, 14, 2, 223);
+    			attr_dev(nav, "class", "svelte-5ir9nf");
     			add_location(nav, file$6, 9, 0, 174);
     		},
     		l: function claim(nodes) {
@@ -5107,77 +5123,86 @@ var app = (function () {
         }
     }
 
-    function typewriter(node, { speed = 50 }) {
-      const valid = (
-        node.childNodes.length === 1 &&
-        node.childNodes[0].nodeType === Node.TEXT_NODE
-      );
-
-      if (!valid) {
-        throw new Error(`This transition only works on elements with a single text node child`);
-      }
-
-      const text = node.textContent;
-      const duration = text.length * speed;
-
-      return {
-        duration,
-        tick: t => {
-          const i = ~~(text.length * t);
-          node.textContent = text.slice(0, i);
-        }
-      };
-    }
-
     /* src/components/YouTubePreview.svelte generated by Svelte v3.38.3 */
     const file$4 = "src/components/YouTubePreview.svelte";
 
+    // (32:2) { #if category }
+    function create_if_block$2(ctx) {
+    	let div;
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t = text(/*category*/ ctx[1]);
+    			attr_dev(div, "class", "category svelte-19dzg1t");
+    			add_location(div, file$4, 32, 4, 678);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*category*/ 2) set_data_dev(t, /*category*/ ctx[1]);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(32:2) { #if category }",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$4(ctx) {
-    	let div2;
+    	let div1;
     	let img;
     	let lazyLoad_action;
     	let t0;
     	let div0;
     	let t1;
-    	let div1;
-    	let t2;
+    	let div1_class_value;
     	let mounted;
     	let dispose;
+    	let if_block = /*category*/ ctx[1] && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
-    			div2 = element("div");
+    			div1 = element("div");
     			img = element("img");
     			t0 = space();
     			div0 = element("div");
     			t1 = space();
-    			div1 = element("div");
-    			t2 = text(/*category*/ ctx[1]);
+    			if (if_block) if_block.c();
     			attr_dev(img, "alt", "youtube-preview");
-    			add_location(img, file$4, 26, 2, 478);
-    			attr_dev(div0, "class", "play svelte-123qbic");
-    			add_location(div0, file$4, 30, 2, 595);
-    			attr_dev(div1, "class", "category svelte-123qbic");
-    			add_location(div1, file$4, 31, 2, 622);
-    			attr_dev(div2, "class", "preview svelte-123qbic");
-    			add_location(div2, file$4, 23, 0, 425);
+    			add_location(img, file$4, 26, 2, 513);
+    			attr_dev(div0, "class", "play svelte-19dzg1t");
+    			add_location(div0, file$4, 30, 2, 630);
+    			attr_dev(div1, "class", div1_class_value = "preview " + (/*border*/ ctx[2] ? " border" : "") + " svelte-19dzg1t");
+    			add_location(div1, file$4, 23, 0, 433);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
-    			append_dev(div2, img);
-    			append_dev(div2, t0);
-    			append_dev(div2, div0);
-    			append_dev(div2, t1);
-    			append_dev(div2, div1);
-    			append_dev(div1, t2);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, img);
+    			append_dev(div1, t0);
+    			append_dev(div1, div0);
+    			append_dev(div1, t1);
+    			if (if_block) if_block.m(div1, null);
 
     			if (!mounted) {
     				dispose = [
     					action_destroyer(lazyLoad_action = lazyLoad.call(null, img, "https://img.youtube.com/vi/" + /*videoId*/ ctx[0] + "/maxresdefault.jpg")),
-    					listen_dev(div2, "click", /*click_handler*/ ctx[3], false, false, false)
+    					listen_dev(div1, "click", /*click_handler*/ ctx[4], false, false, false)
     				];
 
     				mounted = true;
@@ -5185,12 +5210,29 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (lazyLoad_action && is_function(lazyLoad_action.update) && dirty & /*videoId*/ 1) lazyLoad_action.update.call(null, "https://img.youtube.com/vi/" + /*videoId*/ ctx[0] + "/maxresdefault.jpg");
-    			if (dirty & /*category*/ 2) set_data_dev(t2, /*category*/ ctx[1]);
+
+    			if (/*category*/ ctx[1]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					if_block.m(div1, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*border*/ 4 && div1_class_value !== (div1_class_value = "preview " + (/*border*/ ctx[2] ? " border" : "") + " svelte-19dzg1t")) {
+    				attr_dev(div1, "class", div1_class_value);
+    			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div1);
+    			if (if_block) if_block.d();
     			mounted = false;
     			run_all(dispose);
     		}
@@ -5210,7 +5252,7 @@ var app = (function () {
     function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("YouTubePreview", slots, []);
-    	let { videoId } = $$props, { category } = $$props;
+    	let { videoId } = $$props, { category } = $$props, { border } = $$props;
 
     	const options = {
     		width: "1280",
@@ -5222,7 +5264,7 @@ var app = (function () {
     		modal.set(bind(Src, { videoId, options }));
     	};
 
-    	const writable_props = ["videoId", "category"];
+    	const writable_props = ["videoId", "category", "border"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<YouTubePreview> was created with unknown prop '${key}'`);
@@ -5233,6 +5275,7 @@ var app = (function () {
     	$$self.$$set = $$props => {
     		if ("videoId" in $$props) $$invalidate(0, videoId = $$props.videoId);
     		if ("category" in $$props) $$invalidate(1, category = $$props.category);
+    		if ("border" in $$props) $$invalidate(2, border = $$props.border);
     	};
 
     	$$self.$capture_state = () => ({
@@ -5242,6 +5285,7 @@ var app = (function () {
     		lazyLoad,
     		videoId,
     		category,
+    		border,
     		options,
     		show
     	});
@@ -5249,19 +5293,20 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("videoId" in $$props) $$invalidate(0, videoId = $$props.videoId);
     		if ("category" in $$props) $$invalidate(1, category = $$props.category);
+    		if ("border" in $$props) $$invalidate(2, border = $$props.border);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [videoId, category, show, click_handler];
+    	return [videoId, category, border, show, click_handler];
     }
 
     class YouTubePreview extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { videoId: 0, category: 1 });
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { videoId: 0, category: 1, border: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -5280,6 +5325,10 @@ var app = (function () {
     		if (/*category*/ ctx[1] === undefined && !("category" in props)) {
     			console.warn("<YouTubePreview> was created without expected prop 'category'");
     		}
+
+    		if (/*border*/ ctx[2] === undefined && !("border" in props)) {
+    			console.warn("<YouTubePreview> was created without expected prop 'border'");
+    		}
     	}
 
     	get videoId() {
@@ -5295,6 +5344,14 @@ var app = (function () {
     	}
 
     	set category(value) {
+    		throw new Error("<YouTubePreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get border() {
+    		throw new Error("<YouTubePreview>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set border(value) {
     		throw new Error("<YouTubePreview>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -5523,101 +5580,51 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[5] = list[i].id;
-    	child_ctx[6] = list[i].category;
+    	child_ctx[3] = list[i].id;
+    	child_ctx[4] = list[i].category;
     	return child_ctx;
     }
 
-    // (32:4) {#if visible}
+    // (26:4) {#if visible}
     function create_if_block$1(ctx) {
-    	let img;
-    	let img_intro;
-    	let t0;
-    	let div;
-    	let p;
-    	let p_intro;
-    	let t2;
-    	let mounted;
-    	let dispose;
-    	let if_block = /*show_body*/ ctx[1] && create_if_block_1$1(ctx);
+    	let div2;
+    	let div0;
+    	let t1;
+    	let div1;
+    	let div2_intro;
 
     	const block = {
     		c: function create() {
-    			img = element("img");
-    			t0 = space();
-    			div = element("div");
-    			p = element("p");
-    			p.textContent = "I'm NIKKI, I like big DIKKI, a video editor lorem...";
-    			t2 = space();
-    			if (if_block) if_block.c();
-    			attr_dev(img, "id", "landing-person");
-    			attr_dev(img, "alt", "landing-person");
-    			attr_dev(img, "class", "svelte-12p19tc");
-    			add_location(img, file$2, 32, 6, 745);
-    			attr_dev(p, "class", "m svelte-12p19tc");
-    			add_location(p, file$2, 35, 8, 898);
-    			attr_dev(div, "class", "about svelte-12p19tc");
-    			add_location(div, file$2, 34, 6, 870);
+    			div2 = element("div");
+    			div0 = element("div");
+    			div0.textContent = "NIKKI CADIZ";
+    			t1 = space();
+    			div1 = element("div");
+    			div1.textContent = "VIDEO EDITOR";
+    			attr_dev(div0, "class", "name svelte-1efqzyy");
+    			add_location(div0, file$2, 30, 6, 657);
+    			attr_dev(div1, "class", "job svelte-1efqzyy");
+    			add_location(div1, file$2, 31, 6, 699);
+    			attr_dev(div2, "class", "me text m svelte-1efqzyy");
+    			add_location(div2, file$2, 27, 4, 587);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, img, anchor);
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, div, anchor);
-    			append_dev(div, p);
-    			append_dev(div, t2);
-    			if (if_block) if_block.m(div, null);
-
-    			if (!mounted) {
-    				dispose = [
-    					action_destroyer(lazyLoad.call(null, img, "/images/landing1.jpg")),
-    					listen_dev(p, "outroend", /*outroend_handler*/ ctx[3], false, false, false)
-    				];
-
-    				mounted = true;
-    			}
-    		},
-    		p: function update(ctx, dirty) {
-    			if (/*show_body*/ ctx[1]) {
-    				if (if_block) {
-    					if (dirty & /*show_body*/ 2) {
-    						transition_in(if_block, 1);
-    					}
-    				} else {
-    					if_block = create_if_block_1$1(ctx);
-    					if_block.c();
-    					transition_in(if_block, 1);
-    					if_block.m(div, null);
-    				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
-    			}
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div2, t1);
+    			append_dev(div2, div1);
     		},
     		i: function intro(local) {
-    			if (!img_intro) {
+    			if (!div2_intro) {
     				add_render_callback(() => {
-    					img_intro = create_in_transition(img, fade, { duration: 2000 });
-    					img_intro.start();
+    					div2_intro = create_in_transition(div2, fade, { duration: 1000 });
+    					div2_intro.start();
     				});
     			}
-
-    			if (!p_intro) {
-    				add_render_callback(() => {
-    					p_intro = create_in_transition(p, typewriter, { speed: 75 });
-    					p_intro.start();
-    				});
-    			}
-
-    			transition_in(if_block);
     		},
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(img);
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div);
-    			if (if_block) if_block.d();
-    			mounted = false;
-    			run_all(dispose);
+    			if (detaching) detach_dev(div2);
     		}
     	};
 
@@ -5625,53 +5632,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(32:4) {#if visible}",
+    		source: "(26:4) {#if visible}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (40:8) {#if show_body}
-    function create_if_block_1$1(ctx) {
-    	let div;
-    	let div_intro;
-
-    	const block = {
-    		c: function create() {
-    			div = element("div");
-    			div.textContent = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident est, ea pariatur similique\n            dolor unde molestias vitae sequi modi totam accusantium ratione aliquam?\n            Pariatur vel alias iste sequi dignissimos qui.";
-    			add_location(div, file$2, 40, 10, 1096);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    		},
-    		i: function intro(local) {
-    			if (!div_intro) {
-    				add_render_callback(() => {
-    					div_intro = create_in_transition(div, typewriter, { speed: 35 });
-    					div_intro.start();
-    				});
-    			}
-    		},
-    		o: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_1$1.name,
-    		type: "if",
-    		source: "(40:8) {#if show_body}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (31:2) <Section colour='#212121'>
+    // (25:2) <Section colour='#212121' height='95'>
     function create_default_slot_4(ctx) {
     	let if_block_anchor;
     	let if_block = /*visible*/ ctx[0] && create_if_block$1(ctx);
@@ -5688,8 +5656,6 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			if (/*visible*/ ctx[0]) {
     				if (if_block) {
-    					if_block.p(ctx, dirty);
-
     					if (dirty & /*visible*/ 1) {
     						transition_in(if_block, 1);
     					}
@@ -5718,14 +5684,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(31:2) <Section colour='#212121'>",
+    		source: "(25:2) <Section colour='#212121' height='95'>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (51:2) <ParallaxLayer offset={0} rate={.5}>
+    // (39:2) <Section colour='#212121' height='100'>
     function create_default_slot_3(ctx) {
     	let fullvid;
     	let current;
@@ -5757,22 +5723,53 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(51:2) <ParallaxLayer offset={0} rate={.5}>",
+    		source: "(39:2) <Section colour='#212121' height='100'>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (58:8) {#each videos as { id, category }}
+    // (44:2) <Section colour='#212121' height='90'>
+    function create_default_slot_2(ctx) {
+    	let div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			div.textContent = "I am NIKKI CADIZ, a freelance video editor based in the Philippines.\n      I create videos ranging from testimonials, advertisements, web classes, and social media content.\n      I am available for both short-term and long-term projects.";
+    			attr_dev(div, "class", "bio text svelte-1efqzyy");
+    			add_location(div, file$2, 44, 4, 970);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(44:2) <Section colour='#212121' height='90'>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (59:6) {#each videos as { id, category }}
     function create_each_block(ctx) {
     	let youtubepreview;
     	let current;
 
     	youtubepreview = new YouTubePreview({
     			props: {
-    				videoId: /*id*/ ctx[5],
-    				category: /*category*/ ctx[6]
+    				videoId: /*id*/ ctx[3],
+    				category: /*category*/ ctx[4],
+    				border: true
     			},
     			$$inline: true
     		});
@@ -5804,44 +5801,25 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(58:8) {#each videos as { id, category }}",
+    		source: "(59:6) {#each videos as { id, category }}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (56:2) <Section colour='#ff6961'>
-    function create_default_slot_2(ctx) {
-    	let div0;
-    	let t0;
+    // (52:2) <Section colour='#212121' height='48'>
+    function create_default_slot_1(ctx) {
     	let div3;
+    	let div0;
+    	let t1;
     	let div1;
-    	let span0;
-    	let t2;
-    	let br0;
     	let t3;
-    	let span1;
-    	let t5;
     	let div2;
-    	let b;
-    	let t7;
-    	let br1;
-    	let t8;
-    	let br2;
-    	let t9;
-    	let a;
-    	let t11;
-    	let br3;
-    	let t12;
-    	let br4;
-    	let t13;
-    	let br5;
-    	let t14;
-    	let br6;
-    	let t15;
+    	let t5;
+    	let div4;
     	let current;
-    	let each_value = /*videos*/ ctx[2];
+    	let each_value = /*videos*/ ctx[1];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -5855,109 +5833,52 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div3 = element("div");
     			div0 = element("div");
+    			div0.textContent = "PROMOTIONAL";
+    			t1 = space();
+    			div1 = element("div");
+    			div1.textContent = "EDUCATIONAL";
+    			t3 = space();
+    			div2 = element("div");
+    			div2.textContent = "ENTERTAINMENT";
+    			t5 = space();
+    			div4 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t0 = space();
-    			div3 = element("div");
-    			div1 = element("div");
-    			span0 = element("span");
-    			span0.textContent = "WORK";
-    			t2 = space();
-    			br0 = element("br");
-    			t3 = space();
-    			span1 = element("span");
-    			span1.textContent = "with me";
-    			t5 = space();
-    			div2 = element("div");
-    			b = element("b");
-    			b.textContent = "NOTES";
-    			t7 = space();
-    			br1 = element("br");
-    			t8 = text("\n          - Only got this page, and a very simple parallax-thing going ");
-    			br2 = element("br");
-    			t9 = text("\n            - Simple example of maximizing parallax's potential: \n            ");
-    			a = element("a");
-    			a.textContent = "LINK";
-    			t11 = space();
-    			br3 = element("br");
-    			t12 = text("\n          - Will work on the other pages next just to get the placements of things ");
-    			br4 = element("br");
-    			t13 = text("\n          - Be absolutely honest with me if you have any changes, ");
-    			br5 = element("br");
-    			t14 = text("\n             I don't do a lot of designing so the feedback will be helpful ");
-    			br6 = element("br");
-    			t15 = text("\n          - Also, this will be the 'contact me' form (eg. send email, socials)");
-    			attr_dev(div0, "class", "videos svelte-12p19tc");
-    			add_location(div0, file$2, 56, 6, 1608);
-    			set_style(span0, "font-family", "'Montserrat'");
-    			set_style(span0, "font-size", "8em");
-    			add_location(span0, file$2, 64, 10, 1834);
-    			add_location(br0, file$2, 70, 10, 1973);
-    			set_style(span1, "font-family", "'Open Sans'");
-    			set_style(span1, "font-size", "6em");
-    			set_style(span1, "line-height", "0.4");
-    			set_style(span1, "letter-spacing", "0.08em");
-    			set_style(span1, "text-align", "right");
-    			add_location(span1, file$2, 71, 10, 1989);
-    			attr_dev(div1, "class", "half left svelte-12p19tc");
-    			add_location(div1, file$2, 63, 8, 1800);
-    			add_location(b, file$2, 83, 10, 2276);
-    			add_location(br1, file$2, 83, 23, 2289);
-    			add_location(br2, file$2, 84, 71, 2366);
-    			attr_dev(a, "href", "https://svelte.dev/repl/1504d411044745a186004855521a89c7?version=3.35.0");
-    			attr_dev(a, "target", "_blank");
-    			add_location(a, file$2, 86, 12, 2455);
-    			add_location(br3, file$2, 86, 119, 2562);
-    			add_location(br4, file$2, 87, 83, 2651);
-    			add_location(br5, file$2, 88, 66, 2723);
-    			add_location(br6, file$2, 89, 85, 2814);
-    			attr_dev(div2, "class", "half right svelte-12p19tc");
-    			add_location(div2, file$2, 82, 8, 2241);
-    			attr_dev(div3, "class", "contact svelte-12p19tc");
-    			add_location(div3, file$2, 62, 6, 1770);
+    			attr_dev(div0, "class", "m svelte-1efqzyy");
+    			add_location(div0, file$2, 53, 6, 1335);
+    			attr_dev(div1, "class", "m svelte-1efqzyy");
+    			add_location(div1, file$2, 54, 6, 1374);
+    			attr_dev(div2, "class", "m svelte-1efqzyy");
+    			add_location(div2, file$2, 55, 6, 1413);
+    			attr_dev(div3, "class", "headers svelte-1efqzyy");
+    			add_location(div3, file$2, 52, 4, 1307);
+    			attr_dev(div4, "class", "videos svelte-1efqzyy");
+    			add_location(div4, file$2, 57, 4, 1463);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div0, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div3, t1);
+    			append_dev(div3, div1);
+    			append_dev(div3, t3);
+    			append_dev(div3, div2);
+    			insert_dev(target, t5, anchor);
+    			insert_dev(target, div4, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div0, null);
+    				each_blocks[i].m(div4, null);
     			}
 
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, div3, anchor);
-    			append_dev(div3, div1);
-    			append_dev(div1, span0);
-    			append_dev(div1, t2);
-    			append_dev(div1, br0);
-    			append_dev(div1, t3);
-    			append_dev(div1, span1);
-    			append_dev(div3, t5);
-    			append_dev(div3, div2);
-    			append_dev(div2, b);
-    			append_dev(div2, t7);
-    			append_dev(div2, br1);
-    			append_dev(div2, t8);
-    			append_dev(div2, br2);
-    			append_dev(div2, t9);
-    			append_dev(div2, a);
-    			append_dev(div2, t11);
-    			append_dev(div2, br3);
-    			append_dev(div2, t12);
-    			append_dev(div2, br4);
-    			append_dev(div2, t13);
-    			append_dev(div2, br5);
-    			append_dev(div2, t14);
-    			append_dev(div2, br6);
-    			append_dev(div2, t15);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*videos*/ 4) {
-    				each_value = /*videos*/ ctx[2];
+    			if (dirty & /*videos*/ 2) {
+    				each_value = /*videos*/ ctx[1];
     				validate_each_argument(each_value);
     				let i;
 
@@ -5971,7 +5892,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div0, null);
+    						each_blocks[i].m(div4, null);
     					}
     				}
 
@@ -6003,66 +5924,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div0);
-    			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div3);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_2.name,
-    		type: "slot",
-    		source: "(56:2) <Section colour='#ff6961'>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (55:1) <ParallaxLayer offset={.8} rate={.3}>
-    function create_default_slot_1(ctx) {
-    	let section;
-    	let current;
-
-    	section = new Section({
-    			props: {
-    				colour: "#ff6961",
-    				$$slots: { default: [create_default_slot_2] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(section.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(section, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const section_changes = {};
-
-    			if (dirty & /*$$scope*/ 512) {
-    				section_changes.$$scope = { dirty, ctx };
-    			}
-
-    			section.$set(section_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(section.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(section.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(section, detaching);
+    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(div4);
+    			destroy_each(each_blocks, detaching);
     		}
     	};
 
@@ -6070,109 +5935,43 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(55:1) <ParallaxLayer offset={.8} rate={.3}>",
+    		source: "(52:2) <Section colour='#212121' height='48'>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (30:0) <Parallax sections={2.2}>
+    // (65:2) <Section colour='#212121' height='75'>
     function create_default_slot(ctx) {
-    	let section;
-    	let t0;
-    	let parallaxlayer0;
+    	let div2;
+    	let div0;
     	let t1;
-    	let parallaxlayer1;
-    	let current;
-
-    	section = new Section({
-    			props: {
-    				colour: "#212121",
-    				$$slots: { default: [create_default_slot_4] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	parallaxlayer0 = new ParallaxLayer({
-    			props: {
-    				offset: 0,
-    				rate: 0.5,
-    				$$slots: { default: [create_default_slot_3] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	parallaxlayer1 = new ParallaxLayer({
-    			props: {
-    				offset: 0.8,
-    				rate: 0.3,
-    				$$slots: { default: [create_default_slot_1] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
+    	let div1;
 
     	const block = {
     		c: function create() {
-    			create_component(section.$$.fragment);
-    			t0 = space();
-    			create_component(parallaxlayer0.$$.fragment);
+    			div2 = element("div");
+    			div0 = element("div");
+    			div0.textContent = "LET'S WORK TOGETHER";
     			t1 = space();
-    			create_component(parallaxlayer1.$$.fragment);
+    			div1 = element("div");
+    			div1.textContent = "nikkitries@gmail.com";
+    			attr_dev(div0, "class", "work o svelte-1efqzyy");
+    			add_location(div0, file$2, 66, 6, 1711);
+    			attr_dev(div1, "class", "email");
+    			add_location(div1, file$2, 67, 6, 1763);
+    			attr_dev(div2, "class", "contact text m svelte-1efqzyy");
+    			add_location(div2, file$2, 65, 4, 1676);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(section, target, anchor);
-    			insert_dev(target, t0, anchor);
-    			mount_component(parallaxlayer0, target, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(parallaxlayer1, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const section_changes = {};
-
-    			if (dirty & /*$$scope, show_body, visible*/ 515) {
-    				section_changes.$$scope = { dirty, ctx };
-    			}
-
-    			section.$set(section_changes);
-    			const parallaxlayer0_changes = {};
-
-    			if (dirty & /*$$scope*/ 512) {
-    				parallaxlayer0_changes.$$scope = { dirty, ctx };
-    			}
-
-    			parallaxlayer0.$set(parallaxlayer0_changes);
-    			const parallaxlayer1_changes = {};
-
-    			if (dirty & /*$$scope*/ 512) {
-    				parallaxlayer1_changes.$$scope = { dirty, ctx };
-    			}
-
-    			parallaxlayer1.$set(parallaxlayer1_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(section.$$.fragment, local);
-    			transition_in(parallaxlayer0.$$.fragment, local);
-    			transition_in(parallaxlayer1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(section.$$.fragment, local);
-    			transition_out(parallaxlayer0.$$.fragment, local);
-    			transition_out(parallaxlayer1.$$.fragment, local);
-    			current = false;
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div2, t1);
+    			append_dev(div2, div1);
     		},
     		d: function destroy(detaching) {
-    			destroy_component(section, detaching);
-    			if (detaching) detach_dev(t0);
-    			destroy_component(parallaxlayer0, detaching);
-    			if (detaching) detach_dev(t1);
-    			destroy_component(parallaxlayer1, detaching);
+    			if (detaching) detach_dev(div2);
     		}
     	};
 
@@ -6180,7 +5979,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(30:0) <Parallax sections={2.2}>",
+    		source: "(65:2) <Section colour='#212121' height='75'>",
     		ctx
     	});
 
@@ -6188,12 +5987,61 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
-    	let parallax;
+    	let section0;
+    	let t0;
+    	let section1;
+    	let t1;
+    	let section2;
+    	let t2;
+    	let section3;
+    	let t3;
+    	let section4;
     	let current;
 
-    	parallax = new Parallax({
+    	section0 = new Section({
     			props: {
-    				sections: 2.2,
+    				colour: "#212121",
+    				height: "95",
+    				$$slots: { default: [create_default_slot_4] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	section1 = new Section({
+    			props: {
+    				colour: "#212121",
+    				height: "100",
+    				$$slots: { default: [create_default_slot_3] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	section2 = new Section({
+    			props: {
+    				colour: "#212121",
+    				height: "90",
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	section3 = new Section({
+    			props: {
+    				colour: "#212121",
+    				height: "48",
+    				$$slots: { default: [create_default_slot_1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	section4 = new Section({
+    			props: {
+    				colour: "#212121",
+    				height: "75",
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -6202,35 +6050,95 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(parallax.$$.fragment);
+    			create_component(section0.$$.fragment);
+    			t0 = space();
+    			create_component(section1.$$.fragment);
+    			t1 = space();
+    			create_component(section2.$$.fragment);
+    			t2 = space();
+    			create_component(section3.$$.fragment);
+    			t3 = space();
+    			create_component(section4.$$.fragment);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			mount_component(parallax, target, anchor);
+    			mount_component(section0, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(section1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(section2, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(section3, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(section4, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			const parallax_changes = {};
+    			const section0_changes = {};
 
-    			if (dirty & /*$$scope, show_body, visible*/ 515) {
-    				parallax_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope, visible*/ 129) {
+    				section0_changes.$$scope = { dirty, ctx };
     			}
 
-    			parallax.$set(parallax_changes);
+    			section0.$set(section0_changes);
+    			const section1_changes = {};
+
+    			if (dirty & /*$$scope*/ 128) {
+    				section1_changes.$$scope = { dirty, ctx };
+    			}
+
+    			section1.$set(section1_changes);
+    			const section2_changes = {};
+
+    			if (dirty & /*$$scope*/ 128) {
+    				section2_changes.$$scope = { dirty, ctx };
+    			}
+
+    			section2.$set(section2_changes);
+    			const section3_changes = {};
+
+    			if (dirty & /*$$scope*/ 128) {
+    				section3_changes.$$scope = { dirty, ctx };
+    			}
+
+    			section3.$set(section3_changes);
+    			const section4_changes = {};
+
+    			if (dirty & /*$$scope*/ 128) {
+    				section4_changes.$$scope = { dirty, ctx };
+    			}
+
+    			section4.$set(section4_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(parallax.$$.fragment, local);
+    			transition_in(section0.$$.fragment, local);
+    			transition_in(section1.$$.fragment, local);
+    			transition_in(section2.$$.fragment, local);
+    			transition_in(section3.$$.fragment, local);
+    			transition_in(section4.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(parallax.$$.fragment, local);
+    			transition_out(section0.$$.fragment, local);
+    			transition_out(section1.$$.fragment, local);
+    			transition_out(section2.$$.fragment, local);
+    			transition_out(section3.$$.fragment, local);
+    			transition_out(section4.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(parallax, detaching);
+    			destroy_component(section0, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(section1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(section2, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(section3, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(section4, detaching);
     		}
     	};
 
@@ -6248,32 +6156,11 @@ var app = (function () {
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Home", slots, []);
-    	let visible, show_body, show_button = false;
-
-    	let videos = [
-    		{
-    			id: "cQIaYLXR2BA",
-    			category: "Promotional"
-    		},
-    		{
-    			id: "Rh5tEDUxric",
-    			category: "Educational"
-    		},
-    		{
-    			id: "47c5PGlduA8",
-    			category: "Entertainment"
-    		}
-    	];
+    	let visible, show_body = false;
+    	let videos = [{ id: "cQIaYLXR2BA" }, { id: "Rh5tEDUxric" }, { id: "47c5PGlduA8" }];
 
     	onMount(async () => {
     		$$invalidate(0, visible = true);
-
-    		setTimeout(
-    			function () {
-    				$$invalidate(1, show_body = true);
-    			},
-    			4000
-    		);
     	});
 
     	const writable_props = [];
@@ -6281,8 +6168,6 @@ var app = (function () {
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Home> was created with unknown prop '${key}'`);
     	});
-
-    	const outroend_handler = () => alert("outro ended");
 
     	$$self.$capture_state = () => ({
     		onMount,
@@ -6293,25 +6178,22 @@ var app = (function () {
     		YouTubePreview,
     		FullVid,
     		lazyLoad,
-    		typewriter,
     		visible,
     		show_body,
-    		show_button,
     		videos
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("visible" in $$props) $$invalidate(0, visible = $$props.visible);
-    		if ("show_body" in $$props) $$invalidate(1, show_body = $$props.show_body);
-    		if ("show_button" in $$props) show_button = $$props.show_button;
-    		if ("videos" in $$props) $$invalidate(2, videos = $$props.videos);
+    		if ("show_body" in $$props) show_body = $$props.show_body;
+    		if ("videos" in $$props) $$invalidate(1, videos = $$props.videos);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [visible, show_body, videos, outroend_handler];
+    	return [visible, videos];
     }
 
     class Home extends SvelteComponentDev {

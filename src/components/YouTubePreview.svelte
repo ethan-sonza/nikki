@@ -6,7 +6,7 @@
 
   import { lazyLoad } from '../helpers';
 
-  export let videoId, category;
+  export let videoId, category, border;
 
   const options = {
     width: '1280',
@@ -21,7 +21,7 @@
   };
 </script>
 
-<div class="preview"
+<div class="preview { border ? ' border' : ''}"
   on:click="{() => show()}"
 >
   <img alt='youtube-preview'
@@ -29,14 +29,21 @@
   />
 
   <div class="play"></div>
-  <div class="category">{category}</div>
+  { #if category }
+    <div class="category">{category}</div>
+  {/if}
 </div>
 
 <style>
   .preview {
     position: relative;
-    max-width: 33.33%;
+    width: 33.33%;
+    min-height: 300px;
     cursor: pointer;
+  }
+
+  .preview.border {
+    border: 2px solid #EFEFEF;
   }
 
   .play {

@@ -8,8 +8,8 @@
 </script>
 
 <nav>
-  <div class="brand">
-    NIKKI
+  <div class="brand m">
+    NC
   </div>
 
   <div class="links">
@@ -40,7 +40,6 @@
     }
 
     .brand {
-      font-family: Montserrat, sans-serif;
       font-weight: 600;
       font-size: 1.7em;
       margin-left: 1em;

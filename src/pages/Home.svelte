@@ -3,136 +3,121 @@
   import { fade } from 'svelte/transition';
   import { Parallax, ParallaxLayer } from 'svelte-parallax';
   import { Section, YouTubePreview, FullVid } from '../components';
-  import { lazyLoad, typewriter } from '../helpers';
+  import { lazyLoad } from '../helpers';
 
-  let visible, show_body, show_button = false;
+  let visible, show_body = false;
   let videos = [
     {
       id: 'cQIaYLXR2BA',
-      category: 'Promotional',
     }, {
       id: 'Rh5tEDUxric',
-      category: 'Educational',
     }, {
       id: '47c5PGlduA8',
-      category: 'Entertainment',
     },
   ]
 
   onMount(async () => {
     visible = true
-    setTimeout(function(){
-      show_body = true
-    }, 4000);
   });
 </script>
 
-<Parallax sections={2.2}>
-  <Section colour='#212121'>
+<!-- <Parallax sections={2.2}> -->
+  <Section colour='#212121' height='95'>
     {#if visible}
-      <img id='landing-person' in:fade="{{ duration: 2000 }}" use:lazyLoad={'/images/landing1.jpg'} alt='landing-person' />
-
-      <div class="about">
-        <p class="m" in:typewriter="{{speed: 75}}" on:outroend="{() => alert('outro ended')}">
-          I'm NIKKI, I like big DIKKI, a video editor lorem...
-        </p>
-
-        {#if show_body}
-          <div in:typewriter="{{speed: 35}}">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident est, ea pariatur similique
-            dolor unde molestias vitae sequi modi totam accusantium ratione aliquam?
-            Pariatur vel alias iste sequi dignissimos qui.
-          </div>
-        {/if}
-      </div>
-    {/if}
+      
+    <div class="me text m"
+      in:fade="{{duration: 1000}}"
+    >
+      <div class="name">NIKKI CADIZ</div>
+      <div class="job">VIDEO EDITOR</div>
+    </div>
+  {/if}
   </Section>
 
-  <ParallaxLayer offset={0} rate={.5}>
+  <!-- <ParallaxLayer offset={0} rate={.5}> -->
+
+  <Section colour='#212121' height='100'>
     <FullVid></FullVid>
-  </ParallaxLayer>
+  </Section>
+  <!-- </ParallaxLayer> -->
 
-	<ParallaxLayer offset={.8} rate={.3}>
-		<Section colour='#ff6961'>
-      <div class="videos">
-        {#each videos as { id, category }}
-          <YouTubePreview videoId={id} category={category} />
-        {/each}
-      </div>
+  <Section colour='#212121' height='90'>
+    <div class="bio text">
+      I am NIKKI CADIZ, a freelance video editor based in the Philippines.
+      I create videos ranging from testimonials, advertisements, web classes, and social media content.
+      I am available for both short-term and long-term projects.
+    </div>
+  </Section>
 
-      <div class="contact">
-        <div class='half left'>
-          <span style="
-            font-family: 'Montserrat';
-            font-size: 8em;
-          ">
-            WORK
-          </span>
-          <br/>
-          <span style="
-            font-family: 'Open Sans';
-            font-size: 6em;
-            line-height: 0.4;
-            letter-spacing: 0.08em;
-            text-align: right;
-          ">
-            with me
-          </span>
-        </div>
+  <Section colour='#212121' height='48'>
+    <div class="headers">
+      <div class="m">PROMOTIONAL</div>
+      <div class="m">EDUCATIONAL</div>
+      <div class="m">ENTERTAINMENT</div>
+    </div>
+    <div class="videos">
+      {#each videos as { id, category }}
+        <YouTubePreview videoId={id} category={category} border />
+      {/each}
+    </div>
+  </Section>
 
-        <div class='half right'>
-          <b>NOTES</b> <br/>
-          - Only got this page, and a very simple parallax-thing going <br/>
-          &nbsp; - Simple example of maximizing parallax's potential: 
-            <a href='https://svelte.dev/repl/1504d411044745a186004855521a89c7?version=3.35.0' target="_blank">LINK</a> <br/>
-          - Will work on the other pages next just to get the placements of things <br/>
-          - Be absolutely honest with me if you have any changes, <br/>
-          &nbsp;&nbsp; I don't do a lot of designing so the feedback will be helpful <br/>
-          - Also, this will be the 'contact me' form (eg. send email, socials)
-        </div>
-      </div>
-    </Section>
-	</ParallaxLayer>
-</Parallax>
+  <Section colour='#212121' height='75'>
+    <div class="contact text m">
+      <div class="work o">LET'S WORK TOGETHER</div>
+      <div class="email">nikkitries@gmail.com</div>
+    </div>
+  </Section>
+<!-- </Parallax> -->
 <style>
-  img#landing-person {
-    margin-left: 10%;
-  }
-  .about {
-    position: absolute;
-    top: 20%;
-    left: 45%;
+  .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
     color: #EFEFEF;
-    font-size: 2em;
-    width: 50%;
   }
-
-  .m {
-    font-family: Montserrat, sans-serif;
+  .me {
+    font-weight: 700;
+    font-size: 7.5em;
+  }
+  .me .name {
+    color: #212121;
+    background-color: #EFEFEF;
+    padding: 0em 0.3em;
+  }
+  .me .job {
+    margin-left: 0.2em;
     font-weight: 600;
-    font-size: 1.2em;
   }
 
-  .videos {
-    max-width: 100%;
+  .bio {
+    font-size: 3em;
+    text-align: center;
+    padding: 0 2em;
+  }
+
+  .videos, .headers {
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
   }
+  .headers div {
+    width: 33.33%;
+    text-align: center;
+    color: #EFEFEF;
+    font-size: 4em;
+    border: 2px solid #EFEFEF;
+  }
 
   .contact {
-    display: flex;
-    height: 55%;
+    flex-flow: column wrap;
+    font-size: 4em;
   }
 
-  .half {
-    width: 50%;
-    margin: auto 0;
-  }
-  .half.left {
-    text-align: right;
-    padding-right: 1em;
-  }
-  .half.right {
-    font-size: 1.5em;
+  .contact .work {
+    font-style: italic;
+    font-size: 1.2em;
+    margin-bottom: 0.3em;
   }
 </style>
