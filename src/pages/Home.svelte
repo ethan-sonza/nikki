@@ -1,11 +1,9 @@
 <script>
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
-  import { Parallax, ParallaxLayer } from 'svelte-parallax';
   import { Section, YouTubePreview, FullVid } from '../components';
-  import { lazyLoad } from '../helpers';
 
-  let visible, show_body = false;
+  let visible = false;
   let videos = [
     {
       id: 'cQIaYLXR2BA',
@@ -21,10 +19,10 @@
   });
 </script>
 
-<!-- <Parallax sections={2.2}> -->
+  <!-- <Parallax sections={2.2}> -->
+  <!-- <ParallaxLayer offset={0} rate={.5}> -->
   <Section colour='#212121' height='95'>
     {#if visible}
-      
     <div class="me text m"
       in:fade="{{duration: 1000}}"
     >
@@ -34,12 +32,10 @@
   {/if}
   </Section>
 
-  <!-- <ParallaxLayer offset={0} rate={.5}> -->
 
   <Section colour='#212121' height='100'>
     <FullVid></FullVid>
   </Section>
-  <!-- </ParallaxLayer> -->
 
   <Section colour='#212121' height='90'>
     <div class="bio text">
@@ -68,15 +64,7 @@
       <div class="email">nikkitries@gmail.com</div>
     </div>
   </Section>
-<!-- </Parallax> -->
 <style>
-  .text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: inherit;
-    color: #EFEFEF;
-  }
   .me {
     font-weight: 700;
     font-size: 7.5em;

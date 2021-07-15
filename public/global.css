@@ -74,6 +74,27 @@ img {
 	height: 100%;
 }
 
+/* CUSTOM */
+
+.text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: inherit;
+	color: #EFEFEF;
+}
+
+.page {
+	background-color: #212121;
+	height: auto;
+	min-height: 100vh;
+	padding-top: 4em;
+}
+.page .title {
+	font-size: 4em;
+	font-weight: 600;
+}
+
 /* SCROLL BAR */
 
 html, body { 

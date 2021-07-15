@@ -1,12 +1,13 @@
 <script>
   import { modal } from '../stores';
-
+  import {  onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
   import { bind } from 'svelte-simple-modal'
   import YouTube from 'svelte-youtube';
 
-  import { lazyLoad } from '../helpers';
-
-  export let videoId, category, border;
+  export let videoId, category, border, tileStyles;
+  export let tileWidth = '33.33%';
+  export let tileStyle = `width: ${tileWidth};` + tileStyles
 
   const options = {
     width: '1280',
@@ -16,17 +17,26 @@
     }
   };
 
-  const show = () => {
+  const showModal = () => {
     modal.set(bind(YouTube, { videoId: videoId, options: options }));
   };
+
+  let show = false;
+  onMount(() => {
+    show = true
+  });
 </script>
 
 <div class="preview { border ? ' border' : ''}"
-  on:click="{() => show()}"
+  style="{tileStyle}"
+  on:click="{() => showModal()}"
 >
-  <img alt='youtube-preview'
-    use:lazyLoad={'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'}
-  />
+  {#if show }
+    <img alt='youtube-preview'
+      src={'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'}
+      transition:fade
+    />
+  {/if}
 
   <div class="play"></div>
   { #if category }
@@ -37,12 +47,11 @@
 <style>
   .preview {
     position: relative;
-    width: 33.33%;
     min-height: 300px;
     cursor: pointer;
   }
-
-  .preview.border {
+  
+  .border {
     border: 2px solid #EFEFEF;
   }
 
@@ -59,9 +68,9 @@
 
   .category {
     position: absolute;
-    top: 0;
-    margin-top: .5em;
-    margin-left: .5em;
+    bottom: 0;
+    right: 0;
+    margin: .5em;
     padding: .3em;
     color: #EFEFEF;
     background-color: #212121;
