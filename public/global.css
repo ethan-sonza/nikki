@@ -9,11 +9,11 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
+	font-family: Raleway, sans-serif;
 }
 
-.m { font-family: Montserrat, sans-serif; }
-.o { font-family: 'Open Sans', sans-serif; }
+.m, .c { font-family: Cinzel, sans-serif; }
+.o, .r { font-family: Raleway, sans-serif; }
 
 main {
 	width: inherit;
