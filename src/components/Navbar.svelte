@@ -40,7 +40,7 @@
     }
 
     .brand {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1.7em;
       margin-left: 1em;
     }

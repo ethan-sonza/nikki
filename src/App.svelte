@@ -36,5 +36,9 @@
 </main>
 
 <style>
-
+	/* COLOURS */
+	:global(:root){
+		--black: #212121;
+		--white: #EFEFEF;
+	}
 </style>
