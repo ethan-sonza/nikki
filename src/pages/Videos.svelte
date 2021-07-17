@@ -36,12 +36,12 @@
 </script>
 
 <div class="page">
-  <div class="title text m">
+  <div class="title text c">
     VIDEOS
 
     <div class="filters">
       {#each categories as category}
-        <div class="filter"
+        <div class="filter r"
           class:active={filter == category}
           on:click={() => setFilter(category)}
         >
@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .title {
     flex-flow: column wrap;
   }
@@ -70,13 +70,18 @@
   .filters {
     display: flex;
     font-size: 0.3em;
-    justify-content: center;
-  }
-  .filter:not(:first-child) {
-    margin-left: 1em;
-  }
-  .filter.active {
-    font-weight: bold;
-    text-decoration: underline;
+    justify-content: space-evenly;
+    min-width: 30%;
+    &:not(:first-child) {
+      margin-left: 1em;
+    }
+    & .active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .filter {
+      cursor: pointer;
+    }
   }
 </style>

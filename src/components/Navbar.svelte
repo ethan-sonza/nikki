@@ -8,7 +8,9 @@
 </script>
 
 <nav>
-  <div class="brand m">
+  <div class="brand m"
+    on:click={() => setCurrentPage('Home')}
+  >
     NC
   </div>
 
@@ -43,6 +45,7 @@
       font-weight: 700;
       font-size: 1.7em;
       margin-left: 1em;
+      cursor: pointer;
     }
 
     .links {

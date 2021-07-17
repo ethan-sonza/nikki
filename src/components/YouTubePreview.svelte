@@ -34,7 +34,7 @@
   {#if show }
     <img alt='youtube-preview'
       src={'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'}
-      transition:fade
+      in:fade
     />
   {/if}
 

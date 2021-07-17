@@ -1,10 +1,10 @@
 <script>
 	import { currentPage, modal } from "./stores.js";
-
 	import Modal from 'svelte-simple-modal';
 
 	import { About, Home, Videos} from './pages';
 	import { Navbar } from './components';
+	import { PageTransition } from './helpers';
 </script>
 
 <main>
@@ -13,9 +13,13 @@
 	{#if $currentPage === 'Home'}
 		<Home />
 	{:else if $currentPage === 'About'}
-		<About />
+		<PageTransition>
+			<About />
+		</PageTransition>
 	{:else if $currentPage === 'Videos'}
-		<Videos />
+		<PageTransition>
+			<Videos />
+		</PageTransition>
 	{/if}
 
 
