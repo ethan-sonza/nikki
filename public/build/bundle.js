@@ -1003,7 +1003,7 @@ var app = (function () {
         return { set, update, subscribe };
     }
 
-    const currentPage = writable("Videos");
+    const currentPage = writable("Home");
     const modal = writable(null);
 
     var svelte = /*#__PURE__*/Object.freeze({
