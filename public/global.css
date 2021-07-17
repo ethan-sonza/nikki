@@ -34,38 +34,26 @@ label {
 	display: block;
 }
 
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
-}
-
-input:disabled {
-	color: #ccc;
-}
-
 button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
+	font-family: inherit;
+	font-weight: 600;
+	font-size: .8em;
+	padding: 0.3em 1em;
+	box-sizing: border-box;
+	border: 2px solid var(--black);
+	border-radius: 1em;
+	cursor: pointer;
 }
 
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
+button:hover {
 	background-color: #ddd;
 }
 
-button:focus {
-	border-color: #666;
+button:active {
+	box-shadow: 3px 3px darkgray;
+  transform: translateY(4px);
 }
+
 
 img {
 	width: 100%;
