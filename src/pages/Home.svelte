@@ -1,58 +1,35 @@
 <script>
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
-  import { Section, YouTubePreview, FullVid } from '../components';
-
+  import { Section, FullVid } from '../components';
+  import { currentPage } from "../stores.js";
   import { Icon } from '../helpers'
 
   let visible = false;
-  let videos = [
-    {
-      id: 'cQIaYLXR2BA',
-    }, {
-      id: 'Rh5tEDUxric',
-    }, {
-      id: '47c5PGlduA8',
-    },
-  ]
-
+  const setCurrentPage = (page) => $currentPage = page
   onMount(async () => {
     visible = true
   });
 </script>
 
+<div>
   <!-- <Parallax sections={2.2}> -->
   <!-- <ParallaxLayer offset={0} rate={.5}> -->
   <Section colour='#212121' height='95'>
     {#if visible}
-    <div class="me text r"
-      in:fade="{{duration: 1000}}"
-    >
-      <div class="half left">
-        <div class="name">NIKKI <br> CADIZ</div>
-      </div>
+      <div class="me text r" in:fade="{{duration: 1000}}">
+        <div class="half left">
+          <div class="name">NIKKI <br> CADIZ</div>
+        </div>
 
-      <div class="half right">
-        <div class="job">VIDEO <br> EDITOR</div>
+        <div class="half right">
+          <div class="job">VIDEO <br> EDITOR</div>
+        </div>
       </div>
-    </div>
-  {/if}
+    {/if}
   </Section>
   <Section colour='#212121' height='100'>
     <FullVid></FullVid>
-  </Section>
-
-  <Section colour='#212121' height='auto'>
-    <div class="headers">
-      <div class="m">PROMOTIONAL</div>
-      <div class="m">EDUCATIONAL</div>
-      <div class="m">ENTERTAINMENT</div>
-    </div>
-    <div class="videos">
-      {#each videos as { id, category }}
-        <YouTubePreview videoId={id} category={category} border />
-      {/each}
-    </div>
   </Section>
 
   <Section colour='#EFEFEF' height='65'>
@@ -61,7 +38,7 @@
       <div class="categories">
         <div>
           <Icon name='testimony' />
-          <span>TESTIMONIES</span>
+          <span>TESTIMONIALS</span>
         </div>
         <div>
           <Icon name='advert' />
@@ -77,15 +54,13 @@
         </div>
       </div>
       <div class="intro">... and more!</div>
-      <button>VIEW PORTFOLIO</button>
+      <button on:click={() => setCurrentPage('Videos')}>VIEW PORTFOLIO</button>
     </div>
   </Section>
 
   <Section colour='#212121' height='65'>
     <div class="bio text">
-      I am NIKKI CADIZ, a freelance video editor based in the Philippines.
-      I create videos ranging from testimonials, advertisements, web classes, and social media content.
-      I am available for both short-term and long-term projects.
+      I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
     </div>
   </Section>
 
@@ -95,10 +70,12 @@
       <div class="email r">nikkitries@gmail.com</div>
     </div>
   </Section>
+</div>
+
 <style lang="scss">
   .me {
     font-weight: 700;
-    font-size: 7.5em;
+    font-size: 6.5vw;
   }
   .half {
     height: inherit;
@@ -128,13 +105,13 @@
 
   .bio {
     padding: 0 2em;
-    font-size: 3.5em;
+    font-size: 4vw;
     text-align: center;
   }
   .can-do {
     flex-flow: column;
     justify-content: start;
-    font-size: 3em;
+    font-size: 2.5vw;
     padding: 1em 2em;
 
     .categories {
@@ -164,26 +141,12 @@
     }
   }
 
-
-  .videos, .headers {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .headers div {
-    width: 33.33%;
-    text-align: center;
-    color: var(--white);
-    font-size: 4em;
-    border: 2px solid var(--white);
-  }
-
   .contact {
     flex-flow: column wrap;
-    font-size: 4em;
+    font-size: 3.5vw;
 
     .work {
-      font-size: 1.2em;
+      font-size: 1.3em;
       margin-bottom: 0.3em;
     }
   }
