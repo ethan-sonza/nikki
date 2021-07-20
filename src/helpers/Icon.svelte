@@ -1,5 +1,6 @@
 <script>
-  export let name, fill;
+  export let name
+  export let fill = "#212121";
   export let width = "1em";
   export let height = "1em";
   export let focusable = false;

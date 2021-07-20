@@ -5,7 +5,8 @@
   import { bind } from 'svelte-simple-modal'
   import YouTube from 'svelte-youtube';
 
-  export let videoId, category, border, tileStyles;
+  export let videoId, category, border
+  export let tileStyles = '';
   export let tileWidth = '33.33%';
   export let tileStyle = `width: ${tileWidth};` + tileStyles
 
