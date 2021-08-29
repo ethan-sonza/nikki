@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition';
   import { Section, FullVid } from '../components';
   import { currentPage } from "../stores.js";
-  import { Icon } from '../helpers'
+  import { Icon, breakpoint } from '../helpers'
 
   let visible = false;
   const setCurrentPage = (page) => $currentPage = page
@@ -15,7 +15,7 @@
 <div>
   <!-- <Parallax sections={2.2}> -->
   <!-- <ParallaxLayer offset={0} rate={.5}> -->
-  <Section colour='#212121' height='95'>
+  <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 95}'>
     {#if visible}
       <div class="me text r" in:fade="{{duration: 1000}}">
         <div class="half left">
@@ -28,28 +28,34 @@
       </div>
     {/if}
   </Section>
-  <Section colour='#212121' height='100'>
+  <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 100}'>
     <FullVid></FullVid>
   </Section>
 
-  <Section colour='#EFEFEF' height='65'>
-    <div class="can-do itext">
+  <Section colour='#F67280' height='{$breakpoint === 'xs' ? 18 : 65}'>
+    <div class="bio text f-yellow">
+      I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
+    </div>
+  </Section>
+
+  <Section colour='#C06C84' height='{$breakpoint === 'xs' ? 18 : 65}'>
+    <div class="can-do text f-blue">
       <div class="intro">I edit...</div>
       <div class="categories">
         <div>
-          <Icon name='testimony' />
+          <Icon name='testimony' fill='#355C7D' />
           <span>TESTIMONIALS</span>
         </div>
         <div>
-          <Icon name='advert' />
+          <Icon name='advert' fill='#355C7D' />
           <span>ADVERTISEMENTS</span>
         </div>
         <div>
-          <Icon name='music' />
+          <Icon name='music' fill='#355C7D' />
           <span>MUSIC VIDEOS</span>
         </div>
         <div>
-          <Icon name='webclass' />
+          <Icon name='webclass' fill='#355C7D' />
           <span>WEBCLASSES</span>
         </div>
       </div>
@@ -58,14 +64,8 @@
     </div>
   </Section>
 
-  <Section colour='#212121' height='65'>
-    <div class="bio text">
-      I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
-    </div>
-  </Section>
-
-  <Section colour='#EFEFEF' height='75'>
-    <div class="contact itext">
+  <Section colour='#6C5B7B' height='{$breakpoint === 'xs' ? 18 : 75}'>
+    <div class="contact text f-yellow">
       <div class="work c">LET'S WORK TOGETHER!</div>
       <div class="email r">nikkitries@gmail.com</div>
     </div>
@@ -86,8 +86,8 @@
 
     &.left {
       justify-content: flex-end;
-      color: var(--black);
-      background-color: var(--white);
+      color: var(--blue);
+      background-color: var(--yellow);
       padding-right: 0.2em;
       text-align: right;
       font-weight: 800;
@@ -95,8 +95,8 @@
 
     &.right {
       justify-content: flex-start;
-      color: var(--white);
-      background-color: var(--black);
+      color: var(--yellow);
+      background-color: var(--blue);
       padding-left: 0.2em;
       text-align: left;
       font-weight: 700;
@@ -112,7 +112,7 @@
     flex-flow: column;
     justify-content: start;
     font-size: 2.5vw;
-    padding: 1em 2em;
+    padding: 2em;
 
     .categories {
       display: grid;
@@ -131,8 +131,13 @@
         span {
           margin-left: .5em;
         }
-        &:nth-child(odd)  { margin-left: 3em; }
-        &:nth-child(even) { padding-left: 1em; }
+        &:nth-child(odd)  {
+          justify-content: center;
+        }
+        &:nth-child(even) {
+          justify-content: left;
+          margin-left: 10%;
+        }
       }
     }
 

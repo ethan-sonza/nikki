@@ -1,5 +1,7 @@
 <script>
-  import { currentPage } from "../stores.js";
+  import { currentPage } from "../stores.js"
+  import { platform } from "../helpers"
+
   let links = ['Home', 'Videos', 'About']
 
   const setCurrentPage = (page) => {
@@ -14,6 +16,7 @@
     NC
   </div>
 
+  {#if $platform == 'desktop'}
   <div class="links">
     {#each links as link}
       <div class="link"
@@ -24,6 +27,7 @@
       </div>
     {/each}
   </div>
+  {/if}
 </nav>
 
 <style>
