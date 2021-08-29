@@ -44,5 +44,10 @@
 	:global(:root){
 		--black: #212121;
 		--white: #EFEFEF;
+		--yellow: #FBB195;
+		--red: #F67280;
+		--red-light: #C06C84;
+		--indigo: #6C5B7B;
+		--blue: #355C7D;
 	}
 </style>
