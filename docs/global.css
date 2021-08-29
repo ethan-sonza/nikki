@@ -16,6 +16,23 @@ body {
 .m, .c { font-family: Cinzel, sans-serif; }
 .o, .r { font-family: Raleway, sans-serif; }
 
+/* COLOURS */
+.b-yellow { background-color: #FBB195 }
+.f-yellow { color: #FBB195 }
+
+.b-red { background-color: #F67280 }
+.f-red { color: #F67280 }
+
+.b-red-light { background-color: #C06C84 }
+.f-red-light { color: #C06C84 }
+
+.b-indigo { background-color: #6C5B7B }
+.f-indigo { color: #6C5B7B }
+
+.b-blue { background-color: #355C7D }
+.f-blue { color: #355C7D }
+
+/* COMPONENTS */
 main {
 	width: inherit;
 }
@@ -39,6 +56,8 @@ button {
 	font-family: inherit;
 	font-weight: 600;
 	font-size: .8em;
+	color: inherit;
+	background-color: inherit;
 	padding: 0.3em 1em;
 	box-sizing: border-box;
 	border: 2px solid var(--black);
@@ -47,7 +66,7 @@ button {
 }
 
 button:hover {
-	background-color: #ddd;
+	transform: scale(1.1);
 }
 
 button:active {
@@ -69,8 +88,6 @@ img {
 	align-items: center;
 	height: inherit;
 }
-.text { color: var(--white) }
-.itext { color: var(--black) }
 
 .page {
 	background-color: var(--black);
