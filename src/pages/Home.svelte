@@ -28,17 +28,16 @@
       </div>
     {/if}
   </Section>
-  <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 100}'>
-    <FullVid></FullVid>
-  </Section>
 
-  <Section colour='#F67280' height='{$breakpoint === 'xs' ? 18 : 65}'>
-    <div class="bio text f-yellow">
+  <FullVid></FullVid>
+
+  <Section colour='--yellow' height='{$breakpoint === 'xs' ? 18 : 65}'>
+    <div class="bio text f-red">
       I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
     </div>
   </Section>
 
-  <Section colour='#C06C84' height='{$breakpoint === 'xs' ? 18 : 65}'>
+  <Section colour='--red-light' height='{$breakpoint === 'xs' ? 18 : 65}'>
     <div class="can-do text f-blue">
       <div class="intro">I edit...</div>
       <div class="categories">
@@ -64,7 +63,7 @@
     </div>
   </Section>
 
-  <Section colour='#6C5B7B' height='{$breakpoint === 'xs' ? 18 : 75}'>
+  <Section colour='--indigo' height='{$breakpoint === 'xs' ? 18 : 75}'>
     <div class="contact text f-yellow">
       <div class="work c">LET'S WORK TOGETHER!</div>
       <div class="email r">nikkitries@gmail.com</div>
@@ -110,9 +109,9 @@
   }
   .can-do {
     flex-flow: column;
-    justify-content: start;
+    justify-content: center;
     font-size: 2.5vw;
-    padding: 2em;
+    font-weight: 600;
 
     .categories {
       display: grid;
@@ -128,6 +127,7 @@
         width: auto;
         min-width: 50%;
         font-size: 1.5em;
+        font-weight: 800;
         span {
           margin-left: .5em;
         }
@@ -143,6 +143,8 @@
 
     button {
       margin-top: .5em;
+      border-width: 3px;
+      font-weight: 800;
     }
   }
 
