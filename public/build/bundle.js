@@ -1122,7 +1122,7 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	let if_block = /*state*/ ctx[0].closeButton && create_if_block_1$2(ctx);
+    	let if_block = /*state*/ ctx[0].closeButton && create_if_block_1$3(ctx);
     	var switch_value = /*Component*/ ctx[1];
 
     	function switch_props(ctx) {
@@ -1234,7 +1234,7 @@ var app = (function () {
     						transition_in(if_block, 1);
     					}
     				} else {
-    					if_block = create_if_block_1$2(ctx);
+    					if_block = create_if_block_1$3(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
     					if_block.m(div1, t);
@@ -1339,13 +1339,13 @@ var app = (function () {
     }
 
     // (356:8) {#if state.closeButton}
-    function create_if_block_1$2(ctx) {
+    function create_if_block_1$3(ctx) {
     	let show_if;
     	let current_block_type_index;
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block_2$1, create_else_block];
+    	const if_block_creators = [create_if_block_2$2, create_else_block];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -1411,7 +1411,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$2.name,
+    		id: create_if_block_1$3.name,
     		type: "if",
     		source: "(356:8) {#if state.closeButton}",
     		ctx
@@ -1467,7 +1467,7 @@ var app = (function () {
     }
 
     // (357:10) {#if isFunction(state.closeButton)}
-    function create_if_block_2$1(ctx) {
+    function create_if_block_2$2(ctx) {
     	let switch_instance;
     	let switch_instance_anchor;
     	let current;
@@ -1537,7 +1537,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2$1.name,
+    		id: create_if_block_2$2.name,
     		type: "if",
     		source: "(357:10) {#if isFunction(state.closeButton)}",
     		ctx
@@ -2284,18 +2284,18 @@ var app = (function () {
 
     function create_fragment$9(ctx) {
     	let div;
+    	let div_style_value;
     	let current;
-    	const default_slot_template = /*#slots*/ ctx[3].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
+    	const default_slot_template = /*#slots*/ ctx[4].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[3], null);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			if (default_slot) default_slot.c();
     			attr_dev(div, "class", "section svelte-1rjlnam");
-    			set_style(div, "--bg-colour", /*colour*/ ctx[0]);
-    			set_style(div, "height", /*height*/ ctx[1] + "vh");
-    			add_location(div, file$9, 5, 0, 67);
+    			attr_dev(div, "style", div_style_value = "" + (/*bgStyle*/ ctx[1] + "; height: " + /*height*/ ctx[0] + "vh"));
+    			add_location(div, file$9, 13, 0, 280);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2311,17 +2311,13 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (default_slot) {
-    				if (default_slot.p && (!current || dirty & /*$$scope*/ 4)) {
-    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[2], !current ? -1 : dirty, null, null);
+    				if (default_slot.p && (!current || dirty & /*$$scope*/ 8)) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[3], !current ? -1 : dirty, null, null);
     				}
     			}
 
-    			if (!current || dirty & /*colour*/ 1) {
-    				set_style(div, "--bg-colour", /*colour*/ ctx[0]);
-    			}
-
-    			if (!current || dirty & /*height*/ 2) {
-    				set_style(div, "height", /*height*/ ctx[1] + "vh");
+    			if (!current || dirty & /*bgStyle, height*/ 3 && div_style_value !== (div_style_value = "" + (/*bgStyle*/ ctx[1] + "; height: " + /*height*/ ctx[0] + "vh"))) {
+    				attr_dev(div, "style", div_style_value);
     			}
     		},
     		i: function intro(local) {
@@ -2355,6 +2351,14 @@ var app = (function () {
     	validate_slots("Section", slots, ['default']);
     	let { colour } = $$props;
     	let { height = 90 } = $$props;
+    	let bgStyle = `background-color: ${colour}`;
+
+    	if (colour.charAt(0) === "#") {
+    		bgStyle = `--bg-colour: ${colour}`;
+    	} else if (colour.charAt(0) === "-") {
+    		bgStyle = `background-color: var(${colour})`;
+    	}
+
     	const writable_props = ["colour", "height"];
 
     	Object.keys($$props).forEach(key => {
@@ -2362,29 +2366,30 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("colour" in $$props) $$invalidate(0, colour = $$props.colour);
-    		if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    		if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
+    		if ("colour" in $$props) $$invalidate(2, colour = $$props.colour);
+    		if ("height" in $$props) $$invalidate(0, height = $$props.height);
+    		if ("$$scope" in $$props) $$invalidate(3, $$scope = $$props.$$scope);
     	};
 
-    	$$self.$capture_state = () => ({ colour, height });
+    	$$self.$capture_state = () => ({ colour, height, bgStyle });
 
     	$$self.$inject_state = $$props => {
-    		if ("colour" in $$props) $$invalidate(0, colour = $$props.colour);
-    		if ("height" in $$props) $$invalidate(1, height = $$props.height);
+    		if ("colour" in $$props) $$invalidate(2, colour = $$props.colour);
+    		if ("height" in $$props) $$invalidate(0, height = $$props.height);
+    		if ("bgStyle" in $$props) $$invalidate(1, bgStyle = $$props.bgStyle);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [colour, height, $$scope, slots];
+    	return [height, bgStyle, colour, $$scope, slots];
     }
 
     class Section extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { colour: 0, height: 1 });
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { colour: 2, height: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2396,7 +2401,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*colour*/ ctx[0] === undefined && !("colour" in props)) {
+    		if (/*colour*/ ctx[2] === undefined && !("colour" in props)) {
     			console.warn("<Section> was created without expected prop 'colour'");
     		}
     	}
@@ -4521,7 +4526,7 @@ var app = (function () {
     const file$4 = "src/components/YouTubePreview.svelte";
 
     // (35:2) {#if show }
-    function create_if_block_1$1(ctx) {
+    function create_if_block_1$2(ctx) {
     	let img;
     	let img_src_value;
     	let img_intro;
@@ -4557,7 +4562,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$1.name,
+    		id: create_if_block_1$2.name,
     		type: "if",
     		source: "(35:2) {#if show }",
     		ctx
@@ -4609,7 +4614,7 @@ var app = (function () {
     	let div1_class_value;
     	let mounted;
     	let dispose;
-    	let if_block0 = /*show*/ ctx[4] && create_if_block_1$1(ctx);
+    	let if_block0 = /*show*/ ctx[4] && create_if_block_1$2(ctx);
     	let if_block1 = /*category*/ ctx[1] && create_if_block$2(ctx);
 
     	const block = {
@@ -4651,7 +4656,7 @@ var app = (function () {
     						transition_in(if_block0, 1);
     					}
     				} else {
-    					if_block0 = create_if_block_1$1(ctx);
+    					if_block0 = create_if_block_1$2(ctx);
     					if_block0.c();
     					transition_in(if_block0, 1);
     					if_block0.m(div1, t0);
@@ -5098,113 +5103,260 @@ var app = (function () {
     /* src/pages/Home.svelte generated by Svelte v3.38.3 */
     const file$2 = "src/pages/Home.svelte";
 
-    // (19:4) {#if visible}
-    function create_if_block$1(ctx) {
-    	let div4;
-    	let div1;
-    	let div0;
+    // (46:8) {#if visibility['one']}
+    function create_if_block_4(ctx) {
+    	let div;
     	let t0;
-    	let br0;
+    	let br;
     	let t1;
-    	let t2;
-    	let div3;
-    	let div2;
-    	let t3;
-    	let br1;
-    	let t4;
-    	let div4_intro;
+    	let div_intro;
 
     	const block = {
     		c: function create() {
-    			div4 = element("div");
-    			div1 = element("div");
-    			div0 = element("div");
+    			div = element("div");
     			t0 = text("NIKKI ");
-    			br0 = element("br");
+    			br = element("br");
     			t1 = text(" CADIZ");
-    			t2 = space();
-    			div3 = element("div");
-    			div2 = element("div");
-    			t3 = text("VIDEO ");
-    			br1 = element("br");
-    			t4 = text(" EDITOR");
-    			add_location(br0, file$2, 21, 34, 679);
-    			attr_dev(div0, "class", "name");
-    			add_location(div0, file$2, 21, 10, 655);
-    			attr_dev(div1, "class", "half left svelte-1y1mv7f");
-    			add_location(div1, file$2, 20, 8, 621);
-    			add_location(br1, file$2, 25, 33, 778);
-    			attr_dev(div2, "class", "job");
-    			add_location(div2, file$2, 25, 10, 755);
-    			attr_dev(div3, "class", "half right svelte-1y1mv7f");
-    			add_location(div3, file$2, 24, 8, 720);
-    			attr_dev(div4, "class", "me text r svelte-1y1mv7f");
-    			add_location(div4, file$2, 19, 6, 560);
+    			add_location(br, file$2, 46, 71, 1255);
+    			attr_dev(div, "class", "name");
+    			add_location(div, file$2, 46, 10, 1194);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, div1);
-    			append_dev(div1, div0);
-    			append_dev(div0, t0);
-    			append_dev(div0, br0);
-    			append_dev(div0, t1);
-    			append_dev(div4, t2);
-    			append_dev(div4, div3);
-    			append_dev(div3, div2);
-    			append_dev(div2, t3);
-    			append_dev(div2, br1);
-    			append_dev(div2, t4);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, br);
+    			append_dev(div, t1);
     		},
     		i: function intro(local) {
-    			if (!div4_intro) {
+    			if (!div_intro) {
     				add_render_callback(() => {
-    					div4_intro = create_in_transition(div4, fade, { duration: 1000 });
-    					div4_intro.start();
+    					div_intro = create_in_transition(div, fly, { x: 2000, duration: 1000 });
+    					div_intro.start();
     				});
     			}
     		},
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div4);
+    			if (detaching) detach_dev(div);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$1.name,
+    		id: create_if_block_4.name,
     		type: "if",
-    		source: "(19:4) {#if visible}",
+    		source: "(46:8) {#if visibility['one']}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (18:2) <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 95}'>
-    function create_default_slot_4(ctx) {
-    	let if_block_anchor;
-    	let if_block = /*visible*/ ctx[0] && create_if_block$1(ctx);
+    // (52:8) {#if visibility['one']}
+    function create_if_block_3(ctx) {
+    	let div;
+    	let t0;
+    	let br;
+    	let t1;
+    	let div_intro;
 
     	const block = {
     		c: function create() {
-    			if (if_block) if_block.c();
-    			if_block_anchor = empty();
+    			div = element("div");
+    			t0 = text("VIDEO ");
+    			br = element("br");
+    			t1 = text(" EDITOR");
+    			add_location(br, file$2, 52, 71, 1434);
+    			attr_dev(div, "class", "job");
+    			add_location(div, file$2, 52, 10, 1373);
     		},
     		m: function mount(target, anchor) {
-    			if (if_block) if_block.m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, br);
+    			append_dev(div, t1);
+    		},
+    		i: function intro(local) {
+    			if (!div_intro) {
+    				add_render_callback(() => {
+    					div_intro = create_in_transition(div, fly, { x: -2000, duration: 1000 });
+    					div_intro.start();
+    				});
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3.name,
+    		type: "if",
+    		source: "(52:8) {#if visibility['one']}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (43:2) <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 95}'>
+    function create_default_slot_3(ctx) {
+    	let div2;
+    	let div0;
+    	let t;
+    	let div1;
+    	let if_block0 = /*visibility*/ ctx[1]["one"] && create_if_block_4(ctx);
+    	let if_block1 = /*visibility*/ ctx[1]["one"] && create_if_block_3(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div0 = element("div");
+    			if (if_block0) if_block0.c();
+    			t = space();
+    			div1 = element("div");
+    			if (if_block1) if_block1.c();
+    			attr_dev(div0, "class", "half left svelte-8gbbw9");
+    			add_location(div0, file$2, 44, 6, 1127);
+    			attr_dev(div1, "class", "half right svelte-8gbbw9");
+    			add_location(div1, file$2, 50, 6, 1306);
+    			attr_dev(div2, "class", "me text r svelte-8gbbw9");
+    			add_location(div2, file$2, 43, 4, 1097);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			if (if_block0) if_block0.m(div0, null);
+    			append_dev(div2, t);
+    			append_dev(div2, div1);
+    			if (if_block1) if_block1.m(div1, null);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*visible*/ ctx[0]) {
+    			if (/*visibility*/ ctx[1]["one"]) {
+    				if (if_block0) {
+    					if (dirty & /*visibility*/ 2) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_4(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(div0, null);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (/*visibility*/ ctx[1]["one"]) {
+    				if (if_block1) {
+    					if (dirty & /*visibility*/ 2) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block_3(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(div1, null);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+    		},
+    		i: function intro(local) {
+    			transition_in(if_block0);
+    			transition_in(if_block1);
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div2);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_3.name,
+    		type: "slot",
+    		source: "(43:2) <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 95}'>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:6) {#if visibility['two']}
+    function create_if_block_2$1(ctx) {
+    	let span;
+    	let span_intro;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			span.textContent = "I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.";
+    			attr_dev(span, "class", "svelte-8gbbw9");
+    			add_location(span, file$2, 63, 8, 1691);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    		},
+    		i: function intro(local) {
+    			if (!span_intro) {
+    				add_render_callback(() => {
+    					span_intro = create_in_transition(span, fly, { y: 1500, duration: 500 });
+    					span_intro.start();
+    				});
+    			}
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$1.name,
+    		type: "if",
+    		source: "(63:6) {#if visibility['two']}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (61:2) <Section colour='--yellow' height='{$breakpoint === 'xs' ? 18 : 65}'>
+    function create_default_slot_2(ctx) {
+    	let div;
+    	let if_block = /*visibility*/ ctx[1]["two"] && create_if_block_2$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			attr_dev(div, "class", "bio text f-red svelte-8gbbw9");
+    			add_location(div, file$2, 61, 4, 1603);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			/*div_binding*/ ctx[8](div);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*visibility*/ ctx[1]["two"]) {
     				if (if_block) {
-    					if (dirty & /*visible*/ 1) {
+    					if (dirty & /*visibility*/ 2) {
     						transition_in(if_block, 1);
     					}
     				} else {
-    					if_block = create_if_block$1(ctx);
+    					if_block = create_if_block_2$1(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    					if_block.m(div, null);
     				}
     			} else if (if_block) {
     				if_block.d(1);
@@ -5216,77 +5368,9 @@ var app = (function () {
     		},
     		o: noop,
     		d: function destroy(detaching) {
-    			if (if_block) if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_4.name,
-    		type: "slot",
-    		source: "(18:2) <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 95}'>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (31:2) <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 100}'>
-    function create_default_slot_3(ctx) {
-    	let fullvid;
-    	let current;
-    	fullvid = new FullVid({ $$inline: true });
-
-    	const block = {
-    		c: function create() {
-    			create_component(fullvid.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(fullvid, target, anchor);
-    			current = true;
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(fullvid.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(fullvid.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(fullvid, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_3.name,
-    		type: "slot",
-    		source: "(31:2) <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 100}'>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (35:2) <Section colour='#F67280' height='{$breakpoint === 'xs' ? 18 : 65}'>
-    function create_default_slot_2(ctx) {
-    	let div;
-
-    	const block = {
-    		c: function create() {
-    			div = element("div");
-    			div.textContent = "I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.";
-    			attr_dev(div, "class", "bio text f-yellow svelte-1y1mv7f");
-    			add_location(div, file$2, 35, 4, 1032);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    		},
-    		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    			/*div_binding*/ ctx[8](null);
     		}
     	};
 
@@ -5294,42 +5378,48 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(35:2) <Section colour='#F67280' height='{$breakpoint === 'xs' ? 18 : 65}'>",
+    		source: "(61:2) <Section colour='--yellow' height='{$breakpoint === 'xs' ? 18 : 65}'>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (41:2) <Section colour='#C06C84' height='{$breakpoint === 'xs' ? 18 : 65}'>
-    function create_default_slot_1$1(ctx) {
-    	let div7;
+    // (75:6) {#if visibility['three']}
+    function create_if_block_1$1(ctx) {
     	let div0;
+    	let div0_intro;
     	let t1;
     	let div5;
     	let div1;
     	let icon0;
     	let t2;
     	let span0;
+    	let div1_intro;
     	let t4;
     	let div2;
     	let icon1;
     	let t5;
     	let span1;
+    	let div2_intro;
     	let t7;
     	let div3;
     	let icon2;
     	let t8;
     	let span2;
+    	let div3_intro;
     	let t10;
     	let div4;
     	let icon3;
     	let t11;
     	let span3;
+    	let div4_intro;
     	let t13;
     	let div6;
+    	let div6_intro;
     	let t15;
     	let button;
+    	let button_intro;
     	let current;
     	let mounted;
     	let dispose;
@@ -5356,7 +5446,6 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div7 = element("div");
     			div0 = element("div");
     			div0.textContent = "I edit...";
     			t1 = space();
@@ -5390,38 +5479,35 @@ var app = (function () {
     			t15 = space();
     			button = element("button");
     			button.textContent = "VIEW PORTFOLIO";
-    			attr_dev(div0, "class", "intro svelte-1y1mv7f");
-    			add_location(div0, file$2, 42, 6, 1337);
-    			attr_dev(span0, "class", "svelte-1y1mv7f");
-    			add_location(span0, file$2, 46, 10, 1478);
-    			attr_dev(div1, "class", "svelte-1y1mv7f");
-    			add_location(div1, file$2, 44, 8, 1411);
-    			attr_dev(span1, "class", "svelte-1y1mv7f");
-    			add_location(span1, file$2, 50, 10, 1591);
-    			attr_dev(div2, "class", "svelte-1y1mv7f");
-    			add_location(div2, file$2, 48, 8, 1527);
-    			attr_dev(span2, "class", "svelte-1y1mv7f");
-    			add_location(span2, file$2, 54, 10, 1705);
-    			attr_dev(div3, "class", "svelte-1y1mv7f");
-    			add_location(div3, file$2, 52, 8, 1642);
-    			attr_dev(span3, "class", "svelte-1y1mv7f");
-    			add_location(span3, file$2, 58, 10, 1820);
-    			attr_dev(div4, "class", "svelte-1y1mv7f");
-    			add_location(div4, file$2, 56, 8, 1754);
-    			attr_dev(div5, "class", "categories svelte-1y1mv7f");
-    			add_location(div5, file$2, 43, 6, 1378);
-    			attr_dev(div6, "class", "intro svelte-1y1mv7f");
-    			add_location(div6, file$2, 61, 6, 1878);
-    			attr_dev(button, "class", "svelte-1y1mv7f");
-    			add_location(button, file$2, 62, 6, 1923);
-    			attr_dev(div7, "class", "can-do text f-blue svelte-1y1mv7f");
-    			add_location(div7, file$2, 41, 4, 1298);
+    			attr_dev(div0, "class", "intro svelte-8gbbw9");
+    			add_location(div0, file$2, 75, 8, 2117);
+    			attr_dev(span0, "class", "svelte-8gbbw9");
+    			add_location(span0, file$2, 79, 12, 2343);
+    			attr_dev(div1, "class", "svelte-8gbbw9");
+    			add_location(div1, file$2, 77, 10, 2232);
+    			attr_dev(span1, "class", "svelte-8gbbw9");
+    			add_location(span1, file$2, 83, 12, 2504);
+    			attr_dev(div2, "class", "svelte-8gbbw9");
+    			add_location(div2, file$2, 81, 10, 2396);
+    			attr_dev(span2, "class", "svelte-8gbbw9");
+    			add_location(span2, file$2, 87, 12, 2666);
+    			attr_dev(div3, "class", "svelte-8gbbw9");
+    			add_location(div3, file$2, 85, 10, 2559);
+    			attr_dev(span3, "class", "svelte-8gbbw9");
+    			add_location(span3, file$2, 91, 12, 2830);
+    			attr_dev(div4, "class", "svelte-8gbbw9");
+    			add_location(div4, file$2, 89, 10, 2719);
+    			attr_dev(div5, "class", "categories svelte-8gbbw9");
+    			add_location(div5, file$2, 76, 8, 2197);
+    			attr_dev(div6, "class", "intro svelte-8gbbw9");
+    			add_location(div6, file$2, 94, 8, 2894);
+    			attr_dev(button, "class", "svelte-8gbbw9");
+    			add_location(button, file$2, 95, 8, 2977);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div0);
-    			append_dev(div7, t1);
-    			append_dev(div7, div5);
+    			insert_dev(target, div0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, div5, anchor);
     			append_dev(div5, div1);
     			mount_component(icon0, div1, null);
     			append_dev(div1, t2);
@@ -5441,24 +5527,78 @@ var app = (function () {
     			mount_component(icon3, div4, null);
     			append_dev(div4, t11);
     			append_dev(div4, span3);
-    			append_dev(div7, t13);
-    			append_dev(div7, div6);
-    			append_dev(div7, t15);
-    			append_dev(div7, button);
+    			insert_dev(target, t13, anchor);
+    			insert_dev(target, div6, anchor);
+    			insert_dev(target, t15, anchor);
+    			insert_dev(target, button, anchor);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[3], false, false, false);
+    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[9], false, false, false);
     				mounted = true;
     			}
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
+
+    			if (!div0_intro) {
+    				add_render_callback(() => {
+    					div0_intro = create_in_transition(div0, fly, { y: -1500, duration: 500 });
+    					div0_intro.start();
+    				});
+    			}
+
     			transition_in(icon0.$$.fragment, local);
+
+    			if (!div1_intro) {
+    				add_render_callback(() => {
+    					div1_intro = create_in_transition(div1, fade, { duration: 650, delay: 250 });
+    					div1_intro.start();
+    				});
+    			}
+
     			transition_in(icon1.$$.fragment, local);
+
+    			if (!div2_intro) {
+    				add_render_callback(() => {
+    					div2_intro = create_in_transition(div2, fade, { duration: 650, delay: 750 });
+    					div2_intro.start();
+    				});
+    			}
+
     			transition_in(icon2.$$.fragment, local);
+
+    			if (!div3_intro) {
+    				add_render_callback(() => {
+    					div3_intro = create_in_transition(div3, fade, { duration: 650, delay: 500 });
+    					div3_intro.start();
+    				});
+    			}
+
     			transition_in(icon3.$$.fragment, local);
+
+    			if (!div4_intro) {
+    				add_render_callback(() => {
+    					div4_intro = create_in_transition(div4, fade, { duration: 650, delay: 1000 });
+    					div4_intro.start();
+    				});
+    			}
+
+    			if (!div6_intro) {
+    				add_render_callback(() => {
+    					div6_intro = create_in_transition(div6, fly, { y: 500, duration: 3000 });
+    					div6_intro.start();
+    				});
+    			}
+
+    			if (!button_intro) {
+    				add_render_callback(() => {
+    					button_intro = create_in_transition(button, fly, { y: 500, duration: 3250 });
+    					button_intro.start();
+    				});
+    			}
+
     			current = true;
     		},
     		o: function outro(local) {
@@ -5469,11 +5609,17 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(div5);
     			destroy_component(icon0);
     			destroy_component(icon1);
     			destroy_component(icon2);
     			destroy_component(icon3);
+    			if (detaching) detach_dev(t13);
+    			if (detaching) detach_dev(div6);
+    			if (detaching) detach_dev(t15);
+    			if (detaching) detach_dev(button);
     			mounted = false;
     			dispose();
     		}
@@ -5481,45 +5627,186 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$1.name,
-    		type: "slot",
-    		source: "(41:2) <Section colour='#C06C84' height='{$breakpoint === 'xs' ? 18 : 65}'>",
+    		id: create_if_block_1$1.name,
+    		type: "if",
+    		source: "(75:6) {#if visibility['three']}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:2) <Section colour='#6C5B7B' height='{$breakpoint === 'xs' ? 18 : 75}'>
-    function create_default_slot$1(ctx) {
-    	let div2;
-    	let div0;
-    	let t1;
-    	let div1;
+    // (73:2) <Section colour='--red-light' height='{$breakpoint === 'xs' ? 18 : 65}'>
+    function create_default_slot_1$1(ctx) {
+    	let div;
+    	let current;
+    	let if_block = /*visibility*/ ctx[1]["three"] && create_if_block_1$1(ctx);
 
     	const block = {
     		c: function create() {
-    			div2 = element("div");
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			attr_dev(div, "class", "can-do text f-blue svelte-8gbbw9");
+    			add_location(div, file$2, 73, 4, 2023);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			/*div_binding_1*/ ctx[10](div);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*visibility*/ ctx[1]["three"]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*visibility*/ 2) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_1$1(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    			/*div_binding_1*/ ctx[10](null);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1$1.name,
+    		type: "slot",
+    		source: "(73:2) <Section colour='--red-light' height='{$breakpoint === 'xs' ? 18 : 65}'>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (103:6) {#if visibility['four']}
+    function create_if_block$1(ctx) {
+    	let div0;
+    	let div0_intro;
+    	let t1;
+    	let div1;
+    	let div1_intro;
+
+    	const block = {
+    		c: function create() {
     			div0 = element("div");
     			div0.textContent = "LET'S WORK TOGETHER!";
     			t1 = space();
     			div1 = element("div");
     			div1.textContent = "nikkitries@gmail.com";
-    			attr_dev(div0, "class", "work c svelte-1y1mv7f");
-    			add_location(div0, file$2, 68, 6, 2139);
+    			attr_dev(div0, "class", "work c svelte-8gbbw9");
+    			add_location(div0, file$2, 103, 8, 3296);
     			attr_dev(div1, "class", "email r");
-    			add_location(div1, file$2, 69, 6, 2192);
-    			attr_dev(div2, "class", "contact text f-yellow svelte-1y1mv7f");
-    			add_location(div2, file$2, 67, 4, 2097);
+    			add_location(div1, file$2, 104, 8, 3387);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
-    			append_dev(div2, div0);
-    			append_dev(div2, t1);
-    			append_dev(div2, div1);
+    			insert_dev(target, div0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, div1, anchor);
     		},
+    		i: function intro(local) {
+    			if (!div0_intro) {
+    				add_render_callback(() => {
+    					div0_intro = create_in_transition(div0, fly, { y: 100, duration: 1000 });
+    					div0_intro.start();
+    				});
+    			}
+
+    			if (!div1_intro) {
+    				add_render_callback(() => {
+    					div1_intro = create_in_transition(div1, fly, { y: 350, duration: 2500 });
+    					div1_intro.start();
+    				});
+    			}
+    		},
+    		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(103:6) {#if visibility['four']}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (101:2) <Section colour='--indigo' height='{$breakpoint === 'xs' ? 18 : 75}'>
+    function create_default_slot$1(ctx) {
+    	let div;
+    	let if_block = /*visibility*/ ctx[1]["four"] && create_if_block$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			attr_dev(div, "class", "contact text f-yellow svelte-8gbbw9");
+    			add_location(div, file$2, 101, 4, 3200);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    			/*div_binding_2*/ ctx[11](div);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*visibility*/ ctx[1]["four"]) {
+    				if (if_block) {
+    					if (dirty & /*visibility*/ 2) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$1(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: function intro(local) {
+    			transition_in(if_block);
+    		},
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (if_block) if_block.d();
+    			/*div_binding_2*/ ctx[11](null);
     		}
     	};
 
@@ -5527,7 +5814,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(67:2) <Section colour='#6C5B7B' height='{$breakpoint === 'xs' ? 18 : 75}'>",
+    		source: "(101:2) <Section colour='--indigo' height='{$breakpoint === 'xs' ? 18 : 75}'>",
     		ctx
     	});
 
@@ -5535,62 +5822,64 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
+    	let scrolling = false;
+
+    	let clear_scrolling = () => {
+    		scrolling = false;
+    	};
+
+    	let scrolling_timeout;
     	let div;
     	let section0;
     	let t0;
-    	let section1;
+    	let fullvid;
     	let t1;
-    	let section2;
+    	let section1;
     	let t2;
-    	let section3;
+    	let section2_1;
     	let t3;
-    	let section4;
+    	let section3_1;
     	let current;
+    	let mounted;
+    	let dispose;
+    	add_render_callback(/*onwindowscroll*/ ctx[7]);
 
     	section0 = new Section({
     			props: {
     				colour: "#212121",
-    				height: /*$breakpoint*/ ctx[1] === "xs" ? 25 : 95,
-    				$$slots: { default: [create_default_slot_4] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	section1 = new Section({
-    			props: {
-    				colour: "#212121",
-    				height: /*$breakpoint*/ ctx[1] === "xs" ? 25 : 100,
+    				height: /*$breakpoint*/ ctx[5] === "xs" ? 25 : 95,
     				$$slots: { default: [create_default_slot_3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	section2 = new Section({
+    	fullvid = new FullVid({ $$inline: true });
+
+    	section1 = new Section({
     			props: {
-    				colour: "#F67280",
-    				height: /*$breakpoint*/ ctx[1] === "xs" ? 18 : 65,
+    				colour: "--yellow",
+    				height: /*$breakpoint*/ ctx[5] === "xs" ? 18 : 65,
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	section3 = new Section({
+    	section2_1 = new Section({
     			props: {
-    				colour: "#C06C84",
-    				height: /*$breakpoint*/ ctx[1] === "xs" ? 18 : 65,
+    				colour: "--red-light",
+    				height: /*$breakpoint*/ ctx[5] === "xs" ? 18 : 65,
     				$$slots: { default: [create_default_slot_1$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	section4 = new Section({
+    	section3_1 = new Section({
     			props: {
-    				colour: "#6C5B7B",
-    				height: /*$breakpoint*/ ctx[1] === "xs" ? 18 : 75,
+    				colour: "--indigo",
+    				height: /*$breakpoint*/ ctx[5] === "xs" ? 18 : 75,
     				$$slots: { default: [create_default_slot$1] },
     				$$scope: { ctx }
     			},
@@ -5602,14 +5891,15 @@ var app = (function () {
     			div = element("div");
     			create_component(section0.$$.fragment);
     			t0 = space();
-    			create_component(section1.$$.fragment);
+    			create_component(fullvid.$$.fragment);
     			t1 = space();
-    			create_component(section2.$$.fragment);
+    			create_component(section1.$$.fragment);
     			t2 = space();
-    			create_component(section3.$$.fragment);
+    			create_component(section2_1.$$.fragment);
     			t3 = space();
-    			create_component(section4.$$.fragment);
-    			add_location(div, file$2, 14, 0, 374);
+    			create_component(section3_1.$$.fragment);
+    			attr_dev(div, "class", "svelte-8gbbw9");
+    			add_location(div, file$2, 41, 0, 1016);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5618,81 +5908,93 @@ var app = (function () {
     			insert_dev(target, div, anchor);
     			mount_component(section0, div, null);
     			append_dev(div, t0);
-    			mount_component(section1, div, null);
+    			mount_component(fullvid, div, null);
     			append_dev(div, t1);
-    			mount_component(section2, div, null);
+    			mount_component(section1, div, null);
     			append_dev(div, t2);
-    			mount_component(section3, div, null);
+    			mount_component(section2_1, div, null);
     			append_dev(div, t3);
-    			mount_component(section4, div, null);
+    			mount_component(section3_1, div, null);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(window, "scroll", () => {
+    					scrolling = true;
+    					clearTimeout(scrolling_timeout);
+    					scrolling_timeout = setTimeout(clear_scrolling, 100);
+    					/*onwindowscroll*/ ctx[7]();
+    				});
+
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, [dirty]) {
-    			const section0_changes = {};
-    			if (dirty & /*$breakpoint*/ 2) section0_changes.height = /*$breakpoint*/ ctx[1] === "xs" ? 25 : 95;
+    			if (dirty & /*y*/ 1 && !scrolling) {
+    				scrolling = true;
+    				clearTimeout(scrolling_timeout);
+    				scrollTo(window.pageXOffset, /*y*/ ctx[0]);
+    				scrolling_timeout = setTimeout(clear_scrolling, 100);
+    			}
 
-    			if (dirty & /*$$scope, visible*/ 33) {
+    			const section0_changes = {};
+    			if (dirty & /*$breakpoint*/ 32) section0_changes.height = /*$breakpoint*/ ctx[5] === "xs" ? 25 : 95;
+
+    			if (dirty & /*$$scope, visibility*/ 16386) {
     				section0_changes.$$scope = { dirty, ctx };
     			}
 
     			section0.$set(section0_changes);
     			const section1_changes = {};
-    			if (dirty & /*$breakpoint*/ 2) section1_changes.height = /*$breakpoint*/ ctx[1] === "xs" ? 25 : 100;
+    			if (dirty & /*$breakpoint*/ 32) section1_changes.height = /*$breakpoint*/ ctx[5] === "xs" ? 18 : 65;
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope, section2, visibility*/ 16390) {
     				section1_changes.$$scope = { dirty, ctx };
     			}
 
     			section1.$set(section1_changes);
-    			const section2_changes = {};
-    			if (dirty & /*$breakpoint*/ 2) section2_changes.height = /*$breakpoint*/ ctx[1] === "xs" ? 18 : 65;
+    			const section2_1_changes = {};
+    			if (dirty & /*$breakpoint*/ 32) section2_1_changes.height = /*$breakpoint*/ ctx[5] === "xs" ? 18 : 65;
 
-    			if (dirty & /*$$scope*/ 32) {
-    				section2_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope, section3, visibility*/ 16394) {
+    				section2_1_changes.$$scope = { dirty, ctx };
     			}
 
-    			section2.$set(section2_changes);
-    			const section3_changes = {};
-    			if (dirty & /*$breakpoint*/ 2) section3_changes.height = /*$breakpoint*/ ctx[1] === "xs" ? 18 : 65;
+    			section2_1.$set(section2_1_changes);
+    			const section3_1_changes = {};
+    			if (dirty & /*$breakpoint*/ 32) section3_1_changes.height = /*$breakpoint*/ ctx[5] === "xs" ? 18 : 75;
 
-    			if (dirty & /*$$scope*/ 32) {
-    				section3_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope, section4, visibility*/ 16402) {
+    				section3_1_changes.$$scope = { dirty, ctx };
     			}
 
-    			section3.$set(section3_changes);
-    			const section4_changes = {};
-    			if (dirty & /*$breakpoint*/ 2) section4_changes.height = /*$breakpoint*/ ctx[1] === "xs" ? 18 : 75;
-
-    			if (dirty & /*$$scope*/ 32) {
-    				section4_changes.$$scope = { dirty, ctx };
-    			}
-
-    			section4.$set(section4_changes);
+    			section3_1.$set(section3_1_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(section0.$$.fragment, local);
+    			transition_in(fullvid.$$.fragment, local);
     			transition_in(section1.$$.fragment, local);
-    			transition_in(section2.$$.fragment, local);
-    			transition_in(section3.$$.fragment, local);
-    			transition_in(section4.$$.fragment, local);
+    			transition_in(section2_1.$$.fragment, local);
+    			transition_in(section3_1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(section0.$$.fragment, local);
+    			transition_out(fullvid.$$.fragment, local);
     			transition_out(section1.$$.fragment, local);
-    			transition_out(section2.$$.fragment, local);
-    			transition_out(section3.$$.fragment, local);
-    			transition_out(section4.$$.fragment, local);
+    			transition_out(section2_1.$$.fragment, local);
+    			transition_out(section3_1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			destroy_component(section0);
+    			destroy_component(fullvid);
     			destroy_component(section1);
-    			destroy_component(section2);
-    			destroy_component(section3);
-    			destroy_component(section4);
+    			destroy_component(section2_1);
+    			destroy_component(section3_1);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -5711,17 +6013,47 @@ var app = (function () {
     	let $currentPage;
     	let $breakpoint;
     	validate_store(currentPage, "currentPage");
-    	component_subscribe($$self, currentPage, $$value => $$invalidate(4, $currentPage = $$value));
+    	component_subscribe($$self, currentPage, $$value => $$invalidate(12, $currentPage = $$value));
     	validate_store(breakpoint, "breakpoint");
-    	component_subscribe($$self, breakpoint, $$value => $$invalidate(1, $breakpoint = $$value));
+    	component_subscribe($$self, breakpoint, $$value => $$invalidate(5, $breakpoint = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Home", slots, []);
-    	let visible = false;
+
+    	let visibility = {
+    		one: false,
+    		two: false,
+    		three: false,
+    		four: false
+    	};
+
+    	// TODO: move to Section component
+    	let y, section2, section3, section4;
+
     	const setCurrentPage = page => set_store_value(currentPage, $currentPage = page, $currentPage);
 
     	onMount(async () => {
-    		$$invalidate(0, visible = true);
+    		$$invalidate(1, visibility["one"] = true, visibility);
     	});
+
+    	const scrollTest = y => {
+    		let x2 = section2?.getBoundingClientRect().top;
+
+    		if (x2 < section2?.offsetHeight / 3) {
+    			$$invalidate(1, visibility["two"] = true, visibility);
+    		}
+
+    		let x3 = section3?.getBoundingClientRect().top;
+
+    		if (x3 < section3?.offsetHeight / 4) {
+    			$$invalidate(1, visibility["three"] = true, visibility);
+    		}
+
+    		let x4 = section4?.getBoundingClientRect().top;
+
+    		if (x4 < section4?.offsetHeight / 3) {
+    			$$invalidate(1, visibility["four"] = true, visibility);
+    		}
+    	};
 
     	const writable_props = [];
 
@@ -5729,31 +6061,85 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Home> was created with unknown prop '${key}'`);
     	});
 
+    	function onwindowscroll() {
+    		$$invalidate(0, y = window.pageYOffset);
+    	}
+
+    	function div_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			section2 = $$value;
+    			$$invalidate(2, section2);
+    		});
+    	}
+
     	const click_handler = () => setCurrentPage("Videos");
+
+    	function div_binding_1($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			section3 = $$value;
+    			$$invalidate(3, section3);
+    		});
+    	}
+
+    	function div_binding_2($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			section4 = $$value;
+    			$$invalidate(4, section4);
+    		});
+    	}
 
     	$$self.$capture_state = () => ({
     		onMount,
     		fade,
+    		fly,
     		Section,
     		FullVid,
     		currentPage,
     		Icon,
     		breakpoint,
-    		visible,
+    		visibility,
+    		y,
+    		section2,
+    		section3,
+    		section4,
     		setCurrentPage,
+    		scrollTest,
     		$currentPage,
     		$breakpoint
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("visible" in $$props) $$invalidate(0, visible = $$props.visible);
+    		if ("visibility" in $$props) $$invalidate(1, visibility = $$props.visibility);
+    		if ("y" in $$props) $$invalidate(0, y = $$props.y);
+    		if ("section2" in $$props) $$invalidate(2, section2 = $$props.section2);
+    		if ("section3" in $$props) $$invalidate(3, section3 = $$props.section3);
+    		if ("section4" in $$props) $$invalidate(4, section4 = $$props.section4);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [visible, $breakpoint, setCurrentPage, click_handler];
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*y*/ 1) {
+    			scrollTest();
+    		}
+    	};
+
+    	return [
+    		y,
+    		visibility,
+    		section2,
+    		section3,
+    		section4,
+    		$breakpoint,
+    		setCurrentPage,
+    		onwindowscroll,
+    		div_binding,
+    		click_handler,
+    		div_binding_1,
+    		div_binding_2
+    	];
     }
 
     class Home extends SvelteComponentDev {
