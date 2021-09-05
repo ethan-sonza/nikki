@@ -26,7 +26,7 @@
       visibility['two'] = true
     }
     let x3 = section3?.getBoundingClientRect().top
-    if( x3 < section3?.offsetHeight/3) {
+    if( x3 < section3?.offsetHeight/4) {
       visibility['three'] = true
     }
     let x4 = section4?.getBoundingClientRect().top
@@ -92,8 +92,8 @@
             <span>WEBCLASSES</span>
           </div>
         </div>
-        <div class="intro" in:fly="{{y: 1500, duration: 2500}}">... and more!</div>
-        <button on:click={() => setCurrentPage('Videos')} in:fly="{{y: 1500, duration: 3000}}">VIEW PORTFOLIO</button>
+        <div class="intro" in:fly="{{y: 500, duration: 3000}}">... and more!</div>
+        <button on:click={() => setCurrentPage('Videos')} in:fly="{{y: 500, duration: 3250}}">VIEW PORTFOLIO</button>
       {/if}
     </div>
   </Section>
@@ -101,8 +101,8 @@
   <Section colour='--indigo' height='{$breakpoint === 'xs' ? 18 : 75}'>
     <div class="contact text f-yellow" bind:this={section4}>
       {#if visibility['four']}
-        <div class="work c" in:fly="{{y: 1500, duration: 1000}}">LET'S WORK TOGETHER!</div>
-        <div class="email r" in:fly="{{y: 1500, duration: 2500}}">nikkitries@gmail.com</div>
+        <div class="work c" in:fly="{{y: 100, duration: 1000}}">LET'S WORK TOGETHER!</div>
+        <div class="email r" in:fly="{{y: 350, duration: 2500}}">nikkitries@gmail.com</div>
       {/if}
     </div>
   </Section>

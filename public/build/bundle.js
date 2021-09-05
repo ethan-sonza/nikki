@@ -5502,7 +5502,7 @@ var app = (function () {
     			attr_dev(div6, "class", "intro svelte-8gbbw9");
     			add_location(div6, file$2, 94, 8, 2894);
     			attr_dev(button, "class", "svelte-8gbbw9");
-    			add_location(button, file$2, 95, 8, 2978);
+    			add_location(button, file$2, 95, 8, 2977);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -5587,14 +5587,14 @@ var app = (function () {
 
     			if (!div6_intro) {
     				add_render_callback(() => {
-    					div6_intro = create_in_transition(div6, fly, { y: 1500, duration: 2500 });
+    					div6_intro = create_in_transition(div6, fly, { y: 500, duration: 3000 });
     					div6_intro.start();
     				});
     			}
 
     			if (!button_intro) {
     				add_render_callback(() => {
-    					button_intro = create_in_transition(button, fly, { y: 1500, duration: 3000 });
+    					button_intro = create_in_transition(button, fly, { y: 500, duration: 3250 });
     					button_intro.start();
     				});
     			}
@@ -5722,9 +5722,9 @@ var app = (function () {
     			div1 = element("div");
     			div1.textContent = "nikkitries@gmail.com";
     			attr_dev(div0, "class", "work c svelte-8gbbw9");
-    			add_location(div0, file$2, 103, 8, 3298);
+    			add_location(div0, file$2, 103, 8, 3296);
     			attr_dev(div1, "class", "email r");
-    			add_location(div1, file$2, 104, 8, 3390);
+    			add_location(div1, file$2, 104, 8, 3387);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -5734,14 +5734,14 @@ var app = (function () {
     		i: function intro(local) {
     			if (!div0_intro) {
     				add_render_callback(() => {
-    					div0_intro = create_in_transition(div0, fly, { y: 1500, duration: 1000 });
+    					div0_intro = create_in_transition(div0, fly, { y: 100, duration: 1000 });
     					div0_intro.start();
     				});
     			}
 
     			if (!div1_intro) {
     				add_render_callback(() => {
-    					div1_intro = create_in_transition(div1, fly, { y: 1500, duration: 2500 });
+    					div1_intro = create_in_transition(div1, fly, { y: 350, duration: 2500 });
     					div1_intro.start();
     				});
     			}
@@ -5775,7 +5775,7 @@ var app = (function () {
     			div = element("div");
     			if (if_block) if_block.c();
     			attr_dev(div, "class", "contact text f-yellow svelte-8gbbw9");
-    			add_location(div, file$2, 101, 4, 3202);
+    			add_location(div, file$2, 101, 4, 3200);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -6044,7 +6044,7 @@ var app = (function () {
 
     		let x3 = section3?.getBoundingClientRect().top;
 
-    		if (x3 < section3?.offsetHeight / 3) {
+    		if (x3 < section3?.offsetHeight / 4) {
     			$$invalidate(1, visibility["three"] = true, visibility);
     		}
 
