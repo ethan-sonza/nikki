@@ -1,72 +1,109 @@
 <script>
   import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
+  import { fade, fly } from 'svelte/transition';
   import { Section, FullVid } from '../components';
   import { currentPage } from "../stores.js";
   import { Icon, breakpoint } from '../helpers'
 
-  let visible = false;
+  let visibility = {
+    one: false,
+    two: false,
+    three: false,
+    four: false,
+  }
+
+  // TODO: move to Section component
+  let y, section2, section3, section4;
+
   const setCurrentPage = (page) => $currentPage = page
   onMount(async () => {
-    visible = true
+    visibility['one'] = true
   });
+
+  const scrollTest = (y) => {
+    let x2 = section2?.getBoundingClientRect().top
+    if( x2 < section2?.offsetHeight/3) {
+      visibility['two'] = true
+    }
+    let x3 = section3?.getBoundingClientRect().top
+    if( x3 < section3?.offsetHeight/3) {
+      visibility['three'] = true
+    }
+    let x4 = section4?.getBoundingClientRect().top
+    if( x4 < section4?.offsetHeight/3) {
+      visibility['four'] = true
+    }
+  }
+
+  $: scrollTest(y);
 </script>
 
+<svelte:window bind:scrollY={y}/>
 <div>
-  <!-- <Parallax sections={2.2}> -->
-  <!-- <ParallaxLayer offset={0} rate={.5}> -->
   <Section colour='#212121' height='{$breakpoint === 'xs' ? 25 : 95}'>
-    {#if visible}
-      <div class="me text r" in:fade="{{duration: 1000}}">
-        <div class="half left">
-          <div class="name">NIKKI <br> CADIZ</div>
-        </div>
-
-        <div class="half right">
-          <div class="job">VIDEO <br> EDITOR</div>
-        </div>
+    <div class="me text r">
+      <div class="half left" >
+        {#if visibility['one']}
+          <div class="name" in:fly="{{x: 2000, duration: 1000}}">NIKKI <br> CADIZ</div>
+        {/if}
       </div>
-    {/if}
+
+      <div class="half right">
+        {#if visibility['one']}
+          <div class="job" in:fly="{{x: -2000, duration: 1000}}">VIDEO <br> EDITOR</div>
+        {/if}
+      </div>
+    </div>
   </Section>
 
   <FullVid></FullVid>
 
   <Section colour='--yellow' height='{$breakpoint === 'xs' ? 18 : 65}'>
-    <div class="bio text f-red">
-      I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
+    <div class="bio text f-red" bind:this={section2}>
+      {#if visibility['two']}
+        <span
+          in:fly="{{y: 1500, duration: 500}}"
+        >
+          I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
+        </span>
+      {/if}
     </div>
   </Section>
 
   <Section colour='--red-light' height='{$breakpoint === 'xs' ? 18 : 65}'>
-    <div class="can-do text f-blue">
-      <div class="intro">I edit...</div>
-      <div class="categories">
-        <div>
-          <Icon name='testimony' fill='#355C7D' />
-          <span>TESTIMONIALS</span>
+    <div class="can-do text f-blue" bind:this={section3}>
+      {#if visibility['three']}
+        <div class="intro" in:fly="{{y: -1500, duration: 500}}">I edit...</div>
+        <div class="categories">
+          <div in:fade="{{duration: 650, delay: 250}}">
+            <Icon name='testimony' fill='#355C7D' />
+            <span>TESTIMONIALS</span>
+          </div>
+          <div in:fade="{{duration: 650, delay: 750}}">
+            <Icon name='advert' fill='#355C7D' />
+            <span>ADVERTISEMENTS</span>
+          </div>
+          <div in:fade="{{duration: 650, delay: 500}}">
+            <Icon name='music' fill='#355C7D' />
+            <span>MUSIC VIDEOS</span>
+          </div>
+          <div in:fade="{{duration: 650, delay: 1000}}">
+            <Icon name='webclass' fill='#355C7D' />
+            <span>WEBCLASSES</span>
+          </div>
         </div>
-        <div>
-          <Icon name='advert' fill='#355C7D' />
-          <span>ADVERTISEMENTS</span>
-        </div>
-        <div>
-          <Icon name='music' fill='#355C7D' />
-          <span>MUSIC VIDEOS</span>
-        </div>
-        <div>
-          <Icon name='webclass' fill='#355C7D' />
-          <span>WEBCLASSES</span>
-        </div>
-      </div>
-      <div class="intro">... and more!</div>
-      <button on:click={() => setCurrentPage('Videos')}>VIEW PORTFOLIO</button>
+        <div class="intro" in:fly="{{y: 1500, duration: 2500}}">... and more!</div>
+        <button on:click={() => setCurrentPage('Videos')} in:fly="{{y: 1500, duration: 3000}}">VIEW PORTFOLIO</button>
+      {/if}
     </div>
   </Section>
 
   <Section colour='--indigo' height='{$breakpoint === 'xs' ? 18 : 75}'>
-    <div class="contact text f-yellow">
-      <div class="work c">LET'S WORK TOGETHER!</div>
-      <div class="email r">nikkitries@gmail.com</div>
+    <div class="contact text f-yellow" bind:this={section4}>
+      {#if visibility['four']}
+        <div class="work c" in:fly="{{y: 1500, duration: 1000}}">LET'S WORK TOGETHER!</div>
+        <div class="email r" in:fly="{{y: 1500, duration: 2500}}">nikkitries@gmail.com</div>
+      {/if}
     </div>
   </Section>
 </div>
@@ -127,7 +164,7 @@
         width: auto;
         min-width: 50%;
         font-size: 1.5em;
-        font-weight: 800;
+        font-weight: 700;
         span {
           margin-left: .5em;
         }
