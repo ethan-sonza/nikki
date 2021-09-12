@@ -62,7 +62,7 @@
     <div class="bio text f-red" bind:this={section2}>
       {#if visibility['two']}
         <span
-          in:fly="{{y: 1500, duration: 500}}"
+          in:fade="{{duration: 750, delay: 500}}"
         >
           I am NIKKI CADIZ, a freelance video editor based in the Philippines. I am available for both short-term and long-term projects.
         </span>
@@ -92,8 +92,8 @@
             <span>WEBCLASSES</span>
           </div>
         </div>
-        <div class="intro" in:fly="{{y: 500, duration: 3000}}">... and more!</div>
-        <button on:click={() => setCurrentPage('Videos')} in:fly="{{y: 500, duration: 3250}}">VIEW PORTFOLIO</button>
+        <div class="intro" in:fly="{{y: 500, duration: 2000}}">... and more!</div>
+        <button on:click={() => setCurrentPage('Videos')} in:fly="{{y: 500, duration: 2250}}">VIEW PORTFOLIO</button>
       {/if}
     </div>
   </Section>

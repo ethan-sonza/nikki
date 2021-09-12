@@ -2,7 +2,7 @@
   import { YouTubePreview } from '../components';
   let videos = [
     {
-      id: 'cQIaYLXR2BA',
+      id: 'QFZBPZ3Fpl8',
       category: 'Promotional',
     }, {
       id: 'Rh5tEDUxric',
@@ -34,8 +34,8 @@
   }
 	$: filteredList = videos.filter(video => video.category.indexOf(filter) !== -1);
 </script>
-
-<div class="page">
+<!-- TODO: Animations are wonky -->
+<div class="page b-blue f-yellow">
   <div class="title text c">
     VIDEOS
 
@@ -53,7 +53,10 @@
 
   <div class="videos">
     {#each filteredList as { id, category }}
-      <YouTubePreview category={category} bind:videoId={id} tileWidth="25%" tileStyles="margin: 1.5em;"/>
+      <YouTubePreview category={category}
+        tileWidth="25%" tileStyles="margin: 1.5em;"
+        bind:videoId={id}
+      />
     {/each}
   </div>
 </div>

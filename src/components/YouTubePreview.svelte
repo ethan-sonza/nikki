@@ -28,22 +28,22 @@
   });
 </script>
 
+{#if show }
 <div class="preview { border ? ' border' : ''}"
   style="{tileStyle}"
   on:click="{() => showModal()}"
+  transition:fade
 >
-  {#if show }
     <img alt='youtube-preview'
       src={'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'}
-      in:fade
     />
-  {/if}
 
-  <div class="play"></div>
-  { #if category }
-    <div class="category">{category}</div>
-  {/if}
-</div>
+    <div class="play"></div>
+    { #if category }
+      <div class="category">{category}</div>
+    {/if}
+  </div>
+{/if}
 
 <style>
   .preview {
@@ -51,7 +51,12 @@
     min-height: 300px;
     cursor: pointer;
   }
-  
+  .preview img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
   .border {
     border: 2px solid #EFEFEF;
   }
